@@ -12,6 +12,7 @@
 
 // Important notes:
 // - EKRecurrenceRule does add WKST=SU automatically
+// - EKRecurrenceRule does add INTERVAL=1 automatically if no interval is specified
 // - EKRecurrenceRule does only support DAILY, WEEKLY, MONTHLY, YEARLY frequencies
 
 - (EKRecurrenceRule *)initWithString:(NSString *)rfc2445String;

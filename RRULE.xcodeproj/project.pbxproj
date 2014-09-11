@@ -20,7 +20,24 @@
 		19E771BA171FED9B006C8607 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19E771B9171FED9B006C8607 /* Default-568h@2x.png */; };
 		19E771BD171FED9B006C8607 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19E771BB171FED9B006C8607 /* MainStoryboard.storyboard */; };
 		19E771C0171FED9B006C8607 /* CAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E771BF171FED9B006C8607 /* CAViewController.m */; };
+		DF44115219BFE30600E762CF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF44115119BFE30600E762CF /* XCTest.framework */; };
+		DF44115319BFE30600E762CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E771A5171FED9B006C8607 /* Foundation.framework */; };
+		DF44115419BFE30600E762CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E771A3171FED9B006C8607 /* UIKit.framework */; };
+		DF44115A19BFE30600E762CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF44115819BFE30600E762CF /* InfoPlist.strings */; };
+		DF44115C19BFE30600E762CF /* EKRuleNextDate_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF44115B19BFE30600E762CF /* EKRuleNextDate_Tests.m */; };
+		DF44116719C119E500E762CF /* EKRecurrenceRule+NextDate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF44116619C119E500E762CF /* EKRecurrenceRule+NextDate.m */; };
+		DF44116919C15D0700E762CF /* EKRRuleFromString_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF44116819C15D0700E762CF /* EKRRuleFromString_Tests.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DF44115E19BFE30600E762CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19E77198171FED9B006C8607 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 19E7719F171FED9B006C8607;
+			remoteInfo = RRULE;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1965122317253D3B00EECEAC /* EKRecurrenceRule+RRULE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKRecurrenceRule+RRULE.h"; sourceTree = "<group>"; };
@@ -42,6 +59,15 @@
 		19E771BC171FED9B006C8607 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		19E771BE171FED9B006C8607 /* CAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAViewController.h; sourceTree = "<group>"; };
 		19E771BF171FED9B006C8607 /* CAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAViewController.m; sourceTree = "<group>"; };
+		DF44115019BFE30600E762CF /* RRULE Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RRULE Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF44115119BFE30600E762CF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		DF44115719BFE30600E762CF /* RRULE Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RRULE Tests-Info.plist"; sourceTree = "<group>"; };
+		DF44115919BFE30600E762CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DF44115B19BFE30600E762CF /* EKRuleNextDate_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EKRuleNextDate_Tests.m; sourceTree = "<group>"; };
+		DF44115D19BFE30600E762CF /* RRULE Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RRULE Tests-Prefix.pch"; sourceTree = "<group>"; };
+		DF44116519C119E500E762CF /* EKRecurrenceRule+NextDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKRecurrenceRule+NextDate.h"; sourceTree = "<group>"; };
+		DF44116619C119E500E762CF /* EKRecurrenceRule+NextDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKRecurrenceRule+NextDate.m"; sourceTree = "<group>"; };
+		DF44116819C15D0700E762CF /* EKRRuleFromString_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKRRuleFromString_Tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +82,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DF44114D19BFE30600E762CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF44115219BFE30600E762CF /* XCTest.framework in Frameworks */,
+				DF44115419BFE30600E762CF /* UIKit.framework in Frameworks */,
+				DF44115319BFE30600E762CF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -63,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				19E771A9171FED9B006C8607 /* RRULE */,
+				DF44115519BFE30600E762CF /* RRULE Tests */,
 				19E771A2171FED9B006C8607 /* Frameworks */,
 				19E771A1171FED9B006C8607 /* Products */,
 			);
@@ -72,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				19E771A0171FED9B006C8607 /* RRULE.app */,
+				DF44115019BFE30600E762CF /* RRULE Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +121,7 @@
 				19E771A3171FED9B006C8607 /* UIKit.framework */,
 				19E771A5171FED9B006C8607 /* Foundation.framework */,
 				19E771A7171FED9B006C8607 /* CoreGraphics.framework */,
+				DF44115119BFE30600E762CF /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -98,6 +137,8 @@
 				1965122317253D3B00EECEAC /* EKRecurrenceRule+RRULE.h */,
 				1965122417253D3B00EECEAC /* EKRecurrenceRule+RRULE.m */,
 				19E771AA171FED9B006C8607 /* Supporting Files */,
+				DF44116519C119E500E762CF /* EKRecurrenceRule+NextDate.h */,
+				DF44116619C119E500E762CF /* EKRecurrenceRule+NextDate.m */,
 			);
 			path = RRULE;
 			sourceTree = "<group>";
@@ -112,6 +153,26 @@
 				19E771B5171FED9B006C8607 /* Default.png */,
 				19E771B7171FED9B006C8607 /* Default@2x.png */,
 				19E771B9171FED9B006C8607 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DF44115519BFE30600E762CF /* RRULE Tests */ = {
+			isa = PBXGroup;
+			children = (
+				DF44116819C15D0700E762CF /* EKRRuleFromString_Tests.m */,
+				DF44115B19BFE30600E762CF /* EKRuleNextDate_Tests.m */,
+				DF44115619BFE30600E762CF /* Supporting Files */,
+			);
+			path = "RRULE Tests";
+			sourceTree = "<group>";
+		};
+		DF44115619BFE30600E762CF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DF44115719BFE30600E762CF /* RRULE Tests-Info.plist */,
+				DF44115819BFE30600E762CF /* InfoPlist.strings */,
+				DF44115D19BFE30600E762CF /* RRULE Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -136,6 +197,24 @@
 			productReference = 19E771A0171FED9B006C8607 /* RRULE.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DF44114F19BFE30600E762CF /* RRULE Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF44116019BFE30600E762CF /* Build configuration list for PBXNativeTarget "RRULE Tests" */;
+			buildPhases = (
+				DF44114C19BFE30600E762CF /* Sources */,
+				DF44114D19BFE30600E762CF /* Frameworks */,
+				DF44114E19BFE30600E762CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DF44115F19BFE30600E762CF /* PBXTargetDependency */,
+			);
+			name = "RRULE Tests";
+			productName = "RRULE Tests";
+			productReference = DF44115019BFE30600E762CF /* RRULE Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -145,6 +224,11 @@
 				CLASSPREFIX = CA;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Jochen Schöllig";
+				TargetAttributes = {
+					DF44114F19BFE30600E762CF = {
+						TestTargetID = 19E7719F171FED9B006C8607;
+					};
+				};
 			};
 			buildConfigurationList = 19E7719B171FED9B006C8607 /* Build configuration list for PBXProject "RRULE" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -159,6 +243,7 @@
 			projectRoot = "";
 			targets = (
 				19E7719F171FED9B006C8607 /* RRULE */,
+				DF44114F19BFE30600E762CF /* RRULE Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -176,6 +261,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DF44114E19BFE30600E762CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF44115A19BFE30600E762CF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -185,12 +278,30 @@
 			files = (
 				19E771B0171FED9B006C8607 /* main.m in Sources */,
 				19E771B4171FED9B006C8607 /* CAAppDelegate.m in Sources */,
+				DF44116719C119E500E762CF /* EKRecurrenceRule+NextDate.m in Sources */,
 				19E771C0171FED9B006C8607 /* CAViewController.m in Sources */,
 				1965122517253D3B00EECEAC /* EKRecurrenceRule+RRULE.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DF44114C19BFE30600E762CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF44115C19BFE30600E762CF /* EKRuleNextDate_Tests.m in Sources */,
+				DF44116919C15D0700E762CF /* EKRRuleFromString_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DF44115F19BFE30600E762CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 19E7719F171FED9B006C8607 /* RRULE */;
+			targetProxy = DF44115E19BFE30600E762CF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		19E771AC171FED9B006C8607 /* InfoPlist.strings */ = {
@@ -207,6 +318,14 @@
 				19E771BC171FED9B006C8607 /* en */,
 			);
 			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		DF44115819BFE30600E762CF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF44115919BFE30600E762CF /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -274,6 +393,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RRULE/RRULE-Prefix.pch";
 				INFOPLIST_FILE = "RRULE/RRULE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -285,8 +405,70 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RRULE/RRULE-Prefix.pch";
 				INFOPLIST_FILE = "RRULE/RRULE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		DF44116119BFE30600E762CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RRULE.app/RRULE";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RRULE Tests/RRULE Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "RRULE Tests/RRULE Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		DF44116219BFE30600E762CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RRULE.app/RRULE";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RRULE Tests/RRULE Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "RRULE Tests/RRULE Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -307,6 +489,15 @@
 			buildConfigurations = (
 				19E771C4171FED9B006C8607 /* Debug */,
 				19E771C5171FED9B006C8607 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF44116019BFE30600E762CF /* Build configuration list for PBXNativeTarget "RRULE Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF44116119BFE30600E762CF /* Debug */,
+				DF44116219BFE30600E762CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
