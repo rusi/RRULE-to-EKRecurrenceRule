@@ -1,12 +1,16 @@
 # RRULE-to-EKRecurrenceRule
 
-RRULE-to-EKRecurrenceRule is the easiest way to transform a RRULE string representation ([RFC 2445](http://www.ietf.org/rfc/rfc2445.txt)) into an [EKRecurrenceRule](http://developer.apple.com/library/ios/#documentation/EventKit/Reference/EKRecurrenceRuleClassRef/Reference/Reference.html). **'EKRecurrenceRule+RRULE'** is an Objective-C category which adds a new initializer to the EKRecurrenceRule class. EKRecurrenceRule is available in iOS 4.0 and later and needs the EventKit framework.
+RRULE-to-EKRecurrenceRule is the easiest way to transform a RRULE string representation (~~[RFC 2445](http://www.ietf.org/rfc/rfc2445.txt)~~ [RFC5545](http://tools.ietf.org/html/rfc5545)) into an [EKRecurrenceRule](http://developer.apple.com/library/ios/#documentation/EventKit/Reference/EKRecurrenceRuleClassRef/Reference/Reference.html). **'EKRecurrenceRule+RRULE'** is an Objective-C category which adds a new initializer to the EKRecurrenceRule class. EKRecurrenceRule is available in iOS 4.0 and later and needs the EventKit framework.
+
+In addition, "nextDate" API function is added to EKRecurrenceRule that returns the next date based on the specified recurrence rules.
 
 ## Getting Started
 
 - Download RRULE-to-EKRecurrenceRule and play with the included Xcode project.
 - Copy **'EKRecurrenceRule+RRULE.h'** and **'EKRecurrenceRule+RRULE.m'** into your own Xcode project.
-- Add `#import "EKRecurrenceRule+RRULE.h"` to all files you would like to use RRULE-to-EKRecurrenceRule.   
+- Copy **'EKRecurrenceRule+NextDate.h'** and **'EKRecurrenceRule+NextDate.m'** into your own Xcode project.
+- Add `#import "EKRecurrenceRule+RRULE.h"` to all files you would like to use RRULE-to-EKRecurrenceRule.
+- Add `#import "EKRecurrenceRule+NextDate.h"` to all files you would like to use EKRecurrenceRule nextDate.
 
 ## Example
 
@@ -28,6 +32,15 @@ RRULE-to-EKRecurrenceRule is the easiest way to transform a RRULE string represe
 
 - EKRecurrenceRule does add WKST=SU automatically
 - EKRecurrenceRule does only support DAILY, WEEKLY, MONTHLY, YEARLY frequencies
+- EKRecurrenceRule:nextDate: does NOT support the following features from RFC5545 Recurrence Rule:
+	- Frequences: SECONDLY, MINUTELY, HOURLY
+	- Rules parts: BYSECOND, BYMINUTE, BYHOUR, BYWEEKNO, BYSETPOS
+	- Changing WKST is not supported; default is Sunday
+
+/ ( "BYDAY" "=" bywdaylist ) - WEEKLY | (+/- 1 => MONTHLY | YEARLY (+BYWEEKNO))
+/ ( "BYMONTHDAY" "=" bymodaylist ) [1 to 31 or -31 to -1] - MONTHLY | YEARLY
+/ ( "BYYEARDAY" "=" byyrdaylist ) [1 to 366 or -366 to -1] - only YEARLY
+/ ( "BYMONTH" "=" bymolist )
 
 ### ARC
 

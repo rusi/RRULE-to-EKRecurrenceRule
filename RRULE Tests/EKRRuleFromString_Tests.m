@@ -3,7 +3,7 @@
 //  RRULE
 //
 //  Created by Ruslan Hristov on 9/11/14.
-//  Copyright (c) 2014 Jochen Schöllig. All rights reserved.
+//  Copyright (c) 2014 Ruslan Hristov. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
