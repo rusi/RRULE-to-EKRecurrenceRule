@@ -7,25 +7,17 @@
 //
 
 
-//
+// Table from RFC5545; contains only supported combinations:
 //+----------+-------+------+-------+------+
 //|          |DAILY  |WEEKLY|MONTHLY|YEARLY|
 //+----------+-------+------+-------+------+
 //|BYMONTH   |Limit  |Limit |Limit  |Expand|
-//+----------+-------+------+-------+------+
-//|BYWEEKNO  |N/A    |N/A   |N/A    |Expand|
 //+----------+-------+------+-------+------+
 //|BYYEARDAY |N/A    |N/A   |N/A    |Expand|
 //+----------+-------+------+-------+------+
 //|BYMONTHDAY|Limit  |N/A   |Expand |Expand|
 //+----------+-------+------+-------+------+
 //|BYDAY     |Limit  |Expand|Note 1 |Note 2|
-//+----------+-------+------+-------+------+
-//|BYHOUR    |Expand |Expand|Expand |Expand|
-//+----------+-------+------+-------+------+
-//|BYMINUTE  |Expand |Expand|Expand |Expand|
-//+----------+-------+------+-------+------+
-//|BYSECOND  |Expand |Expand|Expand |Expand|
 //+----------+-------+------+-------+------+
 //|BYSETPOS  |Limit  |Limit |Limit  |Limit |
 //+----------+-------+------+-------+------+
@@ -44,6 +36,94 @@
 // then COUNT and UNTIL are evaluated.
 
 #import "EKRecurrenceRule+NextDate.h"
+
+@interface DateInfo : NSObject
+//@property (nonatomic, strong) NSDate *potentialDate;
+@property (nonatomic, strong) NSDateComponents *dateComponents;
+@property (nonatomic, assign) BOOL fixedMonth;
+@property (nonatomic, assign) BOOL fixedDayOfWeek;
+@property (nonatomic, strong) NSCalendar *calendar;
+
+- (NSComparisonResult)compare:(DateInfo *)other;
+- (NSComparisonResult)compareTo:(NSDate *)date;
+- (void)addInterval:(NSInteger)interval withFrequency:(EKRecurrenceFrequency)frequency;
+@end
+@implementation DateInfo
+
+//- (id)initWithPotentialDate:(NSDate *)potentialDate
+//{
+//	self = [super init];
+//	if (self)
+//	{
+//		_potentialDate = potentialDate;
+//	}
+//	return self;
+//}
+- (id)initWithComponents:(NSDateComponents *)dateComponents
+{
+	self = [super init];
+	if (self)
+	{
+		_dateComponents = dateComponents;
+	}
+	return self;
+}
+- (NSCalendar *)calendar
+{
+	if (!_calendar)
+	{
+		_calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+		[_calendar setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+	}
+	return _calendar;
+}
+- (NSDate *)getDate
+{
+	return [self.calendar dateFromComponents:self.dateComponents];
+}
+- (NSComparisonResult)compare:(DateInfo *)other
+{
+	return [[self getDate] compare:[other getDate]];
+}
+- (NSComparisonResult)compareTo:(NSDate *)date
+{
+	NSDate *tmp = [self.calendar dateFromComponents:self.dateComponents];
+	return [tmp compare:date];
+}
+- (void)addInterval:(NSInteger)interval withFrequency:(EKRecurrenceFrequency)frequency
+{
+	NSDate *tmp = [self.calendar dateFromComponents:self.dateComponents];
+	NSDateComponents *cmp = [[NSDateComponents alloc] init];
+	switch (frequency) {
+		case EKRecurrenceFrequencyDaily:
+			[cmp setDay:interval];
+			break;
+		case EKRecurrenceFrequencyWeekly:
+			[cmp setWeek:interval];
+			break;
+		case EKRecurrenceFrequencyMonthly:
+			[cmp setMonth:interval];
+			break;
+		case EKRecurrenceFrequencyYearly:
+			[cmp setYear:interval];
+			break;
+	}
+	tmp = [self.calendar dateByAddingComponents:cmp toDate:tmp options:0];
+	cmp = [self.calendar components:NSUIntegerMax fromDate:tmp];
+	if (self.fixedMonth && cmp.month != self.dateComponents.month)
+	{
+		NSAssert(frequency == EKRecurrenceFrequencyDaily, @"cmp.month != dateComponents.month should only be different with Daily freq.");
+		[cmp setMonth:self.dateComponents.month];
+		tmp = [self.calendar dateFromComponents:cmp];
+
+		cmp = [[NSDateComponents alloc] init];
+		[cmp setYear:1];
+		tmp = [self.calendar dateByAddingComponents:cmp toDate:tmp options:0];
+	}
+	self.dateComponents = [self.calendar components:NSUIntegerMax fromDate:tmp];
+//	NSLog(@"%@", self.dateComponents);
+}
+@end
 
 @implementation EKRecurrenceRule (NextDate)
 
@@ -70,10 +150,49 @@
 - (NSDate *)nextDate:(NSDate *)date
 {
 	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-	NSDateComponents *nextDateComponents = [[NSDateComponents alloc] init];
-
+	[gregorian setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
 	NSDateComponents *currentDateComponents = [gregorian components:NSUIntegerMax fromDate:date];
 
+	NSMutableArray *potentialDates = [[NSMutableArray alloc] init];
+	//eval BYMONTH = monthsOfTheYear
+	if (self.monthsOfTheYear.count)
+	{
+		// DAILY, WEEKLY, MONTHLY -- limit
+		// YEARLY -- expand (add recurrence for each specified month
+
+		// according to the documentation, this is only valid for YEARLY occurence...
+		for (NSNumber *month in self.monthsOfTheYear)
+		{
+			NSDateComponents *dc = [gregorian components:NSUIntegerMax fromDate:date];
+			if (self.frequency == EKRecurrenceFrequencyDaily && dc.month != month.integerValue)
+				[dc setDay:1];
+			[dc setMonth:[month integerValue]];
+			DateInfo *info = [[DateInfo alloc] initWithComponents:dc];
+			info.fixedMonth = true;
+			[potentialDates addObject:info];
+		}
+	}
+
+	//eval BYYEARDAY = ??? TODO ???
+
+
+	if (potentialDates.count <= 0)
+		[potentialDates addObject:[[DateInfo alloc] initWithComponents:currentDateComponents]];
+
+	[potentialDates enumerateObjectsUsingBlock:^(DateInfo *potentialDate, NSUInteger idx, BOOL *stop)
+	{
+		if ([potentialDate compareTo:date] <= NSOrderedSame)
+			[potentialDate addInterval:self.interval withFrequency:self.frequency];
+	}];
+	[potentialDates sortUsingComparator:^NSComparisonResult(id a, id b)
+	{
+		return [a compare:b];
+	}];
+
+	return [[potentialDates firstObject] getDate];
+
+	// ---------------------
+	NSDateComponents *nextDateComponents = [[NSDateComponents alloc] init];
 	NSMutableArray *daysOfWeek = [NSMutableArray arrayWithArray:self.daysOfTheWeek];
 	[daysOfWeek sortUsingComparator:^NSComparisonResult(EKRecurrenceDayOfWeek *day1, EKRecurrenceDayOfWeek *day2) {
 		if (day1.dayOfTheWeek == day2.dayOfTheWeek)
