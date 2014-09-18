@@ -8,19 +8,19 @@
 
 
 // Table from RFC5545; contains only supported combinations:
-//+----------+-------+------+-------+------+
-//|          |DAILY  |WEEKLY|MONTHLY|YEARLY|
-//+----------+-------+------+-------+------+
-//|BYMONTH   |Limit  |Limit |Limit  |Expand|
-//+----------+-------+------+-------+------+
-//|BYYEARDAY |N/A    |N/A   |N/A    |Expand|
-//+----------+-------+------+-------+------+
-//|BYMONTHDAY|Limit  |N/A   |Expand |Expand|
-//+----------+-------+------+-------+------+
-//|BYDAY     |Limit  |Expand|Note 1 |Note 2|
-//+----------+-------+------+-------+------+
-//|BYSETPOS  |Limit  |Limit |Limit  |Limit |
-//+----------+-------+------+-------+------+
+//+-----------+-------+------+-------+------+
+//|           |DAILY  |WEEKLY|MONTHLY|YEARLY|
+//+-----------+-------+------+-------+------+
+//|*BYMONTH   |Limit  |Limit |Limit  |Expand|
+//+-----------+-------+------+-------+------+
+//| BYYEARDAY |N/A    |N/A   |N/A    |Expand|
+//+-----------+-------+------+-------+------+
+//| BYMONTHDAY|Limit  |N/A   |Expand |Expand|
+//+-----------+-------+------+-------+------+
+//|*BYDAY     |Limit  |Expand|Note 1 |Note 2|
+//+-----------+-------+------+-------+------+
+//| BYSETPOS  |Limit  |Limit |Limit  |Limit |
+//+-----------+-------+------+-------+------+
 //
 //Note 1:  Limit if BYMONTHDAY is present; otherwise, special expand
 //for MONTHLY.
@@ -37,11 +37,11 @@
 
 #import "EKRecurrenceRule+NextDate.h"
 
-@interface DateInfo : NSObject
+@interface DateInfo : NSObject <NSCopying>
 //@property (nonatomic, strong) NSDate *potentialDate;
 @property (nonatomic, strong) NSDateComponents *dateComponents;
-@property (nonatomic, assign) BOOL fixedMonth;
-@property (nonatomic, assign) BOOL fixedDayOfWeek;
+@property (nonatomic, assign) NSInteger fixedMonth;
+@property (nonatomic, assign) NSInteger fixedDayOfWeek;
 @property (nonatomic, strong) NSCalendar *calendar;
 
 - (NSComparisonResult)compare:(DateInfo *)other;
@@ -67,6 +67,21 @@
 		_dateComponents = dateComponents;
 	}
 	return self;
+}
+-(id)copyWithZone:(NSZone *)zone
+{
+	// We'll ignore the zone for now
+	DateInfo *another = [[DateInfo alloc] init];
+	another.dateComponents = [self.dateComponents copyWithZone: zone];
+	another.fixedMonth = self.fixedMonth;
+	another.fixedDayOfWeek = self.fixedDayOfWeek;
+	another.calendar = [self.calendar copyWithZone: zone];
+
+	return another;
+}
+-(NSString*)description
+{
+	return [NSString stringWithFormat:@"%@", [self getDate]];
 }
 - (NSCalendar *)calendar
 {
@@ -110,10 +125,11 @@
 	}
 	tmp = [self.calendar dateByAddingComponents:cmp toDate:tmp options:0];
 	cmp = [self.calendar components:NSUIntegerMax fromDate:tmp];
-	if (self.fixedMonth && cmp.month != self.dateComponents.month)
+	if (self.fixedMonth && cmp.month != self.fixedMonth)
 	{
-		NSAssert(frequency == EKRecurrenceFrequencyDaily, @"cmp.month != dateComponents.month should only be different with Daily freq.");
-		[cmp setMonth:self.dateComponents.month];
+		NSAssert(frequency == EKRecurrenceFrequencyDaily || frequency == EKRecurrenceFrequencyMonthly,
+				 @"cmp.month != dateComponents.month should only be different with Daily or Monthly freq.");
+		[cmp setMonth:self.fixedMonth];
 		tmp = [self.calendar dateFromComponents:cmp];
 
 		cmp = [[NSDateComponents alloc] init];
@@ -147,6 +163,22 @@
 	}
 }
 
+- (void)addPotentialDatesTo:(NSMutableArray *)potentialDates startingWith:(DateInfo *)currentInfo after:(NSDate *)date
+{
+	// if equal, then we add to potential dates; then the interval will pick the next object...
+	if ([currentInfo compareTo:date] >= NSOrderedSame)
+		[potentialDates addObject:currentInfo];
+
+	DateInfo *lastInfo = [currentInfo copy];
+	for (int i = 0; i < self.interval; ++i)
+	{
+		DateInfo *info = [lastInfo copy];
+		[info addInterval:1 withFrequency:self.frequency];
+		[potentialDates addObject:info];
+		lastInfo = [info copy];
+	}
+}
+
 - (NSDate *)nextDate:(NSDate *)date
 {
 	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -168,8 +200,8 @@
 				[dc setDay:1];
 			[dc setMonth:[month integerValue]];
 			DateInfo *info = [[DateInfo alloc] initWithComponents:dc];
-			info.fixedMonth = true;
-			[potentialDates addObject:info];
+			info.fixedMonth = [month integerValue];
+			[self addPotentialDatesTo:potentialDates startingWith:info after:date];
 		}
 	}
 
@@ -177,19 +209,32 @@
 
 
 	if (potentialDates.count <= 0)
-		[potentialDates addObject:[[DateInfo alloc] initWithComponents:currentDateComponents]];
-
-	[potentialDates enumerateObjectsUsingBlock:^(DateInfo *potentialDate, NSUInteger idx, BOOL *stop)
 	{
-		if ([potentialDate compareTo:date] <= NSOrderedSame)
-			[potentialDate addInterval:self.interval withFrequency:self.frequency];
-	}];
+		DateInfo *info = [[DateInfo alloc] initWithComponents:currentDateComponents];
+		[self addPotentialDatesTo:potentialDates startingWith:info after:date];
+	}
+//	[potentialDates enumerateObjectsUsingBlock:^(DateInfo *potentialDate, NSUInteger idx, BOOL *stop)
+//	{
+//		if ([potentialDate compareTo:date] <= NSOrderedSame)
+//			[potentialDate addInterval:self.interval withFrequency:self.frequency];
+//	}];
+
 	[potentialDates sortUsingComparator:^NSComparisonResult(id a, id b)
 	{
 		return [a compare:b];
 	}];
 
+	NSAssert(potentialDates.count >= self.interval, @"Missing next date candidates for the specified interval");
+	NSLog(@"%@", potentialDates);
+
+	// if the first object is the same as the input date; then show the next 'interval'
+	if ([[potentialDates firstObject] compareTo:date] == NSOrderedSame)
+		return [[potentialDates objectAtIndex:self.interval] getDate];
+	// otherwise, align the date to the first valid date based on the rules
 	return [[potentialDates firstObject] getDate];
+
+
+//	return [[potentialDates firstObject] getDate];
 
 	// ---------------------
 	NSDateComponents *nextDateComponents = [[NSDateComponents alloc] init];
