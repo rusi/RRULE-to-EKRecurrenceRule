@@ -113,19 +113,23 @@
 		if (self.frequency == EKRecurrenceFrequencyYearly)
 		{
 			if (self.fixedMonth < self.dateComponents.month)
-				[self addInterval];
+				[self addInterval:1];
 			[self.dateComponents setMonth:self.fixedMonth];
 		}
+		NSInteger interval = self.interval;
+		// combining BYMONTH and INTERVAL > 1 with MONTHLY frequency doesn't really make sense...
+		if (self.frequency == EKRecurrenceFrequencyMonthly)
+			interval = 1;
 		while (self.fixedMonth != self.dateComponents.month)
 		{
-			 [self addInterval];
+			[self addInterval:interval];
 		}
 	}
 	//BYDAY
 	if (self.fixedDayOfTheWeek && self.fixedDayOfTheWeek.dayOfTheWeek != self.dateComponents.weekday)
 	{
 		if (self.fixedDayOfTheWeek.dayOfTheWeek < self.dateComponents.weekday)
-			[self addInterval];
+			[self addInterval:1];
 		NSDateComponents *dc = [[NSDateComponents alloc] init];
 		[dc setDay:self.fixedDayOfTheWeek.dayOfTheWeek - self.dateComponents.weekday];
 		NSDate *tmp = [self.calendar dateByAddingComponents:dc toDate:[self getDate] options:0];
@@ -136,25 +140,25 @@
 }
 - (void)nextInterval
 {
-	[self addInterval];
+	[self addInterval:self.interval];
 	[self enforceRules];
 }
-- (void)addInterval
+- (void)addInterval:(NSInteger)interval
 {
 	NSDate *tmp = [self.calendar dateFromComponents:self.dateComponents];
 	NSDateComponents *cmp = [[NSDateComponents alloc] init];
 	switch (self.frequency) {
 		case EKRecurrenceFrequencyDaily:
-			[cmp setDay:1];
+			[cmp setDay:interval];
 			break;
 		case EKRecurrenceFrequencyWeekly:
-			[cmp setWeek:1];
+			[cmp setWeek:interval];
 			break;
 		case EKRecurrenceFrequencyMonthly:
-			[cmp setMonth:1];
+			[cmp setMonth:interval];
 			break;
 		case EKRecurrenceFrequencyYearly:
-			[cmp setYear:1];
+			[cmp setYear:interval];
 			break;
 	}
 	tmp = [self.calendar dateByAddingComponents:cmp toDate:tmp options:0];
@@ -282,26 +286,28 @@
 		return [a compare:b];
 	}];
 
-	NSAssert(potentialDates.count >= self.interval, @"Missing next date candidates for the specified interval");
 	NSLog(@"%@", potentialDates);
 
 	// if the first object is the same as the input date; then show the next 'interval'
-	NSInteger interval = self.interval;
-	if (self.frequency == EKRecurrenceFrequencyWeekly)
-	{
-		for (DateInfo *info in potentialDates)
-		{
-			if (info.dateComponents.weekOfYear == currentDateComponents.weekOfYear
-				&& [info compareToDate:date] != NSOrderedSame)
-			{
-				return [info getDate];
-			}
-		}
-//		if (self.daysOfTheWeek.count)
-//			interval *= self.daysOfTheWeek.count;
-	}
+////	NSInteger interval = self.interval;
+//	if (self.frequency == EKRecurrenceFrequencyWeekly)
+//	{
+//		for (DateInfo *info in potentialDates)
+//		{
+//			if (info.dateComponents.weekOfYear == currentDateComponents.weekOfYear
+//				&& [info compareToDate:date] != NSOrderedSame)
+//			{
+//				return [info getDate];
+//			}
+//		}
+////		if (self.daysOfTheWeek.count)
+////			interval *= self.daysOfTheWeek.count;
+//	}
 	if ([[potentialDates firstObject] compareToDate:date] == NSOrderedSame)
-		return [[potentialDates objectAtIndex:interval] getDate]; //self.interval
+	{
+		//NSAssert(potentialDates.count >= self.interval, @"Missing next date candidates for the specified interval");
+		return [[potentialDates objectAtIndex:1 /*interval*/] getDate]; //self.interval
+	}
 	// otherwise, align the date to the first valid date based on the rules
 	return [[potentialDates firstObject] getDate];
 
