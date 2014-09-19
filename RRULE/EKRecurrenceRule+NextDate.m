@@ -129,7 +129,7 @@
 	if (self.fixedDayOfTheWeek && self.fixedDayOfTheWeek.dayOfTheWeek != self.dateComponents.weekday)
 	{
 		if (self.fixedDayOfTheWeek.dayOfTheWeek < self.dateComponents.weekday)
-			[self addInterval:1];
+			[self addInterval:self.interval];
 		NSDateComponents *dc = [[NSDateComponents alloc] init];
 		[dc setDay:self.fixedDayOfTheWeek.dayOfTheWeek - self.dateComponents.weekday];
 		NSDate *tmp = [self.calendar dateByAddingComponents:dc toDate:[self getDate] options:0];
@@ -251,6 +251,7 @@
 		{
 			for (EKRecurrenceDayOfWeek *dayOfWeek in self.daysOfTheWeek)
 			{
+				NSAssert(!dayOfWeek.weekNumber || self.frequency >= EKRecurrenceFrequencyMonthly, @"WeekNumber cannot be specified with < Monthly freq.");
 				for (DateInfo *info in potentialDates)
 				{
 					info.fixedDayOfTheWeek = dayOfWeek;

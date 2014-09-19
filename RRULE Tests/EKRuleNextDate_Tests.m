@@ -132,7 +132,7 @@
 	XCTAssert([self test:@"FREQ=WEEKLY;INTERVAL=2;BYDAY=MO,WE,FR"
 				  result:[Tuple first:[_df dateFromString:@"2014/05/09 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/19 09:00:00 GMT"]]]); // Fri
 	XCTAssert([self test:@"FREQ=WEEKLY;INTERVAL=2;BYDAY=MO,WE,FR"
-				  result:[Tuple first:[_df dateFromString:@"2014/05/10 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/12 09:00:00 GMT"]]]); // Sat
+				  result:[Tuple first:[_df dateFromString:@"2014/05/10 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/19 09:00:00 GMT"]]]); // Sat
 	XCTAssert([self test:@"FREQ=WEEKLY;INTERVAL=2;BYDAY=MO,WE,FR"
 				  result:[Tuple first:[_df dateFromString:@"2014/05/11 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/12 09:00:00 GMT"]]]); // Sun
 
@@ -190,6 +190,22 @@
 				  result:[Tuple first:[_df dateFromString:@"2014/07/07 09:00:00 GMT"] second:[_df dateFromString:@"2014/08/01 09:00:00 GMT"]]]);
 	XCTAssert([self test:@"FREQ=MONTHLY;BYDAY=1FR,1MO"
 				  result:[Tuple first:[_df dateFromString:@"2014/07/08 09:00:00 GMT"] second:[_df dateFromString:@"2014/08/01 09:00:00 GMT"]]]);
+
+
+	// Monthly on the 2nd Monday and Friday:
+	XCTAssert([self test:@"FREQ=MONTHLY;BYDAY=2FR,2MO"
+				  result:[Tuple first:[_df dateFromString:@"2014/05/01 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/09 09:00:00 GMT"]]]); // before 2nd Friday
+	XCTAssert([self test:@"FREQ=MONTHLY;BYDAY=2FR,2MO"
+				  result:[Tuple first:[_df dateFromString:@"2014/05/02 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/09 09:00:00 GMT"]]]); // before 2nd Friday
+	XCTAssert([self test:@"FREQ=MONTHLY;BYDAY=2FR,2MO"
+				  result:[Tuple first:[_df dateFromString:@"2014/05/03 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/09 09:00:00 GMT"]]]);
+	XCTAssert([self test:@"FREQ=MONTHLY;BYDAY=2FR,2MO"
+				  result:[Tuple first:[_df dateFromString:@"2014/05/09 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/12 09:00:00 GMT"]]]);
+	XCTAssert([self test:@"FREQ=MONTHLY;BYDAY=2FR,2MO"
+				  result:[Tuple first:[_df dateFromString:@"2014/05/12 09:00:00 GMT"] second:[_df dateFromString:@"2014/06/09 09:00:00 GMT"]]]);
+	XCTAssert([self test:@"FREQ=MONTHLY;BYDAY=2FR,2MO"
+				  result:[Tuple first:[_df dateFromString:@"2014/06/09 09:00:00 GMT"] second:[_df dateFromString:@"2014/06/13 09:00:00 GMT"]]]);
+
 
 }
 
