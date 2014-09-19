@@ -93,8 +93,8 @@
 
 - (void)testDebugTest
 {
-	XCTAssert([self test:@"FREQ=WEEKLY;INTERVAL=1;BYMONTH=1,5"
-				  result:[Tuple first:[_df dateFromString:@"2014/03/05 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/05 09:00:00 GMT"]]]);
+	XCTAssert([self test:@"FREQ=WEEKLY;INTERVAL=2;BYDAY=TU,TH"
+				  result:[Tuple first:[_df dateFromString:@"2014/05/08 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/20 09:00:00 GMT"]]]); // Thu
 
 }
 
@@ -230,7 +230,7 @@
 	// WEEKLY
 	// FREQ=WEEKLY;DTSTART=20140305T080000Z;COUNT=60;BYMONTH=1,5
 	XCTAssert([self test:@"FREQ=WEEKLY;INTERVAL=1;BYMONTH=1,5"
-				  result:[Tuple first:[_df dateFromString:@"2014/03/05 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/05 09:00:00 GMT"]]]);
+				  result:[Tuple first:[_df dateFromString:@"2014/03/05 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/07 09:00:00 GMT"]]]);
 	XCTAssert([self test:@"FREQ=WEEKLY;INTERVAL=1;BYMONTH=1,5"
 				  result:[Tuple first:[_df dateFromString:@"2014/05/05 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/12 09:00:00 GMT"]]]);
 	XCTAssert([self test:@"FREQ=WEEKLY;INTERVAL=1;BYMONTH=1,5"
