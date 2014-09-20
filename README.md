@@ -41,6 +41,8 @@ In addition, "nextDate" API function is added to EKRecurrenceRule that returns t
 / ( "BYMONTHDAY" "=" bymodaylist ) [1 to 31 or -31 to -1] - MONTHLY | YEARLY
 / ( "BYYEARDAY" "=" byyrdaylist ) [1 to 366 or -366 to -1] - only YEARLY
 / ( "BYMONTH" "=" bymolist )
+/ e.g. FREQ=DAILY;BYMONTH=1    => all days in January
+/ e.g. FREQ=YEARLY;BYMONTH=1,2 => 
 
 ### ARC
 

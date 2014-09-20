@@ -126,15 +126,40 @@
 		}
 	}
 	//BYDAY
-	if (self.fixedDayOfTheWeek && self.fixedDayOfTheWeek.dayOfTheWeek != self.dateComponents.weekday)
+	NSLog(@"%@", [self description]);
+	if (self.fixedDayOfTheWeek &&
+		(self.fixedDayOfTheWeek.dayOfTheWeek != self.dateComponents.weekday
+		|| self.fixedDayOfTheWeek.weekNumber != self.dateComponents.weekdayOrdinal))
 	{
-		if (self.fixedDayOfTheWeek.dayOfTheWeek < self.dateComponents.weekday)
-			[self addInterval:self.interval];
-		NSDateComponents *dc = [[NSDateComponents alloc] init];
-		[dc setDay:self.fixedDayOfTheWeek.dayOfTheWeek - self.dateComponents.weekday];
-		NSDate *tmp = [self.calendar dateByAddingComponents:dc toDate:[self getDate] options:0];
-		self.dateComponents = [self.calendar components:NSUIntegerMax fromDate:tmp];
-//		[self.dateComponents setWeekday:self.fixedDayOfTheWeek.dayOfTheWeek];
+		if (self.fixedDayOfTheWeek.weekNumber)
+		{
+			if (self.fixedDayOfTheWeek.weekNumber && self.fixedDayOfTheWeek.weekNumber < self.dateComponents.weekdayOrdinal)
+				[self addInterval:self.interval];
+
+//			NSInteger weekDiff = dayOfWeek.weekNumber - currentDateComponents.weekdayOrdinal;
+			NSDateComponents *cmp = [self.dateComponents copy];
+			cmp = [[NSDateComponents alloc] init];
+			[cmp setWeekday:self.fixedDayOfTheWeek.dayOfTheWeek];
+			[cmp setWeekdayOrdinal:self.fixedDayOfTheWeek.weekNumber];
+			[cmp setMonth:self.dateComponents.month];
+			[cmp setYear:self.dateComponents.year];
+			[cmp setHour:self.dateComponents.hour];
+			[cmp setMinute:self.dateComponents.minute];
+			[cmp setSecond:self.dateComponents.second];
+			self.dateComponents = cmp;
+		}
+		else
+		{
+			if (self.fixedDayOfTheWeek.dayOfTheWeek < self.dateComponents.weekday)
+				[self addInterval:self.interval];
+
+			NSDateComponents *dc = [[NSDateComponents alloc] init];
+			[dc setDay:self.fixedDayOfTheWeek.dayOfTheWeek - self.dateComponents.weekday];
+			NSDate *tmp = [self.calendar dateByAddingComponents:dc toDate:[self getDate] options:0];
+			self.dateComponents = [self.calendar components:NSUIntegerMax fromDate:tmp];
+		}
+
+
 	}
 	//			if (dayOfWeek.weekNumber)
 }
@@ -152,7 +177,7 @@
 			[cmp setDay:interval];
 			break;
 		case EKRecurrenceFrequencyWeekly:
-			[cmp setWeek:interval];
+			[cmp setWeekOfMonth:interval];
 			break;
 		case EKRecurrenceFrequencyMonthly:
 			[cmp setMonth:interval];
@@ -162,6 +187,16 @@
 			break;
 	}
 	tmp = [self.calendar dateByAddingComponents:cmp toDate:tmp options:0];
+	// we are going to set the day anyway, so reset the day
+	if (self.fixedDayOfTheWeek.weekNumber)
+	{
+		NSInteger components = NSCalendarUnitEra |	NSCalendarUnitYear | NSCalendarUnitMonth | /* NSCalendarUnitDay |*/
+			NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitNanosecond |
+			NSCalendarUnitCalendar | NSCalendarUnitTimeZone;
+		cmp = [self.calendar components:components fromDate:tmp];
+		[cmp setDay:1];
+		tmp = [self.calendar dateFromComponents:cmp];
+	}
 	self.dateComponents = [self.calendar components:NSUIntegerMax fromDate:tmp];
 }
 - (void)addInterval:(NSInteger)interval withFrequency:(EKRecurrenceFrequency)frequency
@@ -173,7 +208,7 @@
 			[cmp setDay:interval];
 			break;
 		case EKRecurrenceFrequencyWeekly:
-			[cmp setWeek:interval];
+			[cmp setWeekOfMonth:interval];
 			break;
 		case EKRecurrenceFrequencyMonthly:
 			[cmp setMonth:interval];
@@ -304,7 +339,16 @@
 ////		if (self.daysOfTheWeek.count)
 ////			interval *= self.daysOfTheWeek.count;
 //	}
-	if ([[potentialDates firstObject] compareToDate:date] == NSOrderedSame)
+	for (DateInfo *info in potentialDates)
+	{
+		if ([info compareToDate:date] > NSOrderedSame)
+			return [info getDate];
+	}
+
+	NSAssert(false, @"Couldn't calculate next date.");
+	return nil;
+
+	if ([[potentialDates firstObject] compareToDate:date] <= NSOrderedSame)
 	{
 		//NSAssert(potentialDates.count >= self.interval, @"Missing next date candidates for the specified interval");
 		return [[potentialDates objectAtIndex:1 /*interval*/] getDate]; //self.interval
@@ -329,8 +373,8 @@
 		NSInteger dayDiff = dayOfWeek.dayOfTheWeek - currentDateComponents.weekday;
 		NSInteger weekDiff = dayOfWeek.weekNumber - currentDateComponents.weekdayOrdinal;
 
-		NSLog(@"-- %d, %@", currentDateComponents.weekdayOrdinal, currentDateComponents);
-		NSLog(@"-- %d, %d", dayDiff, weekDiff);
+		//NSLog(@"-- %d, %@", currentDateComponents.weekdayOrdinal, currentDateComponents);
+		//NSLog(@"-- %d, %d", dayDiff, weekDiff);
 
 		if (dayDiff > 0 && (dayOfWeek.weekNumber == 0 || weekDiff >= 0))
 		{
@@ -342,7 +386,7 @@
 	if (!nextDayOfWeek && daysOfWeek.count)
 		nextDayOfWeek = (EKRecurrenceDayOfWeek *)daysOfWeek[0];
 
-	NSLog(@"-- NextDayOfWeek: %d, %d, %@", nextDayOfWeek.weekNumber, nextDayOfWeek.dayOfTheWeek, nextDayOfWeek);
+	//NSLog(@"-- NextDayOfWeek: %d, %d, %@", nextDayOfWeek.weekNumber, nextDayOfWeek.dayOfTheWeek, nextDayOfWeek);
 	if (nextDayOfWeek)
 		[nextDateComponents setDay:nextDayOfWeek.dayOfTheWeek - currentDateComponents.weekday]; // ?? for all ??
 
@@ -383,7 +427,7 @@
 			[nextDateComponents setDay:interval];
 			break;
 		case EKRecurrenceFrequencyWeekly:
-			[nextDateComponents setWeek:interval];
+			[nextDateComponents setWeekOfMonth:interval];
 			break;
 		case EKRecurrenceFrequencyMonthly:
 			[nextDateComponents setMonth:interval];
