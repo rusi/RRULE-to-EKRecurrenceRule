@@ -262,8 +262,10 @@
 		for (NSNumber *month in self.monthsOfTheYear)
 		{
 			EKRecurrenceFrequency freq = self.frequency;
-			if (self.frequency == EKRecurrenceFrequencyDaily && self.daysOfTheWeek.count)
+			if (self.daysOfTheWeek.count) // special expand for Monthly when BYDAY is present
+			{
 				freq = EKRecurrenceFrequencyWeekly;
+			}
 
 			DateInfo *info = [[DateInfo alloc] initWithComponents:currentDateComponents frequency:freq andInterval:self.interval];
 			info.fixedMonth = [month integerValue];
@@ -278,27 +280,20 @@
 	//eval BYDAY = daysOfTheWeek
 	if (self.daysOfTheWeek.count)
 	{
-		if (seeding.count)
+		if (!seeding.count)
+			[seeding addObject:[[DateInfo alloc] initWithComponents:currentDateComponents frequency:self.frequency andInterval:self.interval]];
+
+		NSMutableArray *tmp = seeding;
+		seeding = [[NSMutableArray alloc] init];
+
+		for (DateInfo *tmpInfo in tmp)
 		{
 			for (EKRecurrenceDayOfWeek *dayOfWeek in self.daysOfTheWeek)
 			{
 				NSAssert(!dayOfWeek.weekNumber || self.frequency >= EKRecurrenceFrequencyMonthly, @"WeekNumber cannot be specified with < Monthly freq.");
-				for (DateInfo *info in seeding)
-				{
-					info.fixedDayOfTheWeek = dayOfWeek;
-//					[info enforceRules];
-				}
-			}
-		}
-		else
-		{
-			for (EKRecurrenceDayOfWeek *dayOfWeek in self.daysOfTheWeek)
-			{
-				DateInfo *info = [[DateInfo alloc] initWithComponents:currentDateComponents frequency:self.frequency andInterval:self.interval];
+				DateInfo *info = [tmpInfo copy];
 				info.fixedDayOfTheWeek = dayOfWeek;
 				[seeding addObject:info];
-//				[info enforceRules];
-//				[self addPotentialDatesTo:potentialDates startingWith:info];//] after:date];
 			}
 		}
 	}
