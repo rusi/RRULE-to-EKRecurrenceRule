@@ -292,24 +292,39 @@
 
 }
 
+- (void)testByMonthByDayWeekly
+{
+	// BYMONTH=5;BYDAY=TU;FREQ=WEEKLY -> every Tuesday in May
+	XCTAssert([self test:@"BYMONTH=5;BYDAY=TU;FREQ=WEEKLY" // -> every Tuesday in May
+				  result:[Tuple first:[_df dateFromString:@"2014/03/08 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/06 09:00:00 GMT"]]]);
+	XCTAssert([self test:@"BYMONTH=5;BYDAY=TU;FREQ=WEEKLY" // -> every Tuesday in May
+				  result:[Tuple first:[_df dateFromString:@"2014/05/06 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/13 09:00:00 GMT"]]]);
+	XCTAssert([self test:@"BYMONTH=5;BYDAY=TU;FREQ=WEEKLY" // -> every Tuesday in May
+				  result:[Tuple first:[_df dateFromString:@"2014/05/27 09:00:00 GMT"] second:[_df dateFromString:@"2015/05/05 09:00:00 GMT"]]]);
+	XCTAssert([self test:@"BYMONTH=5;BYDAY=TU;FREQ=WEEKLY" // -> every Tuesday in May
+				  result:[Tuple first:[_df dateFromString:@"2014/06/27 09:00:00 GMT"] second:[_df dateFromString:@"2015/05/05 09:00:00 GMT"]]]);
+
+	// BYMONTH=1,5;BYDAY=TU,WE;FREQ=WEEKLY -> every Tue and Wed in Jan and May
+}
+
 - (void)testDebugTest
 {
-	XCTAssert([self test:@"FREQ=MONTHLY;BYDAY=1FR,1MO"
-				  result:[Tuple first:[_df dateFromString:@"2014/05/02 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/05 09:00:00 GMT"]]]); // 1st Friday
+	XCTAssert([self test:@"BYMONTH=5;BYDAY=TU;FREQ=WEEKLY" // -> every Tuesday in May
+				  result:[Tuple first:[_df dateFromString:@"2014/03/08 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/06 09:00:00 GMT"]]]);
 
-	
 }
 
 // TODO: add tests for ByMonth & ByDay for Weekly, Monthly, Yearly, with different intervals
-// BYMONTH=5;BYDAY=TU;FREQ=WEEKLY -> every Tuesday in May
+
 // BYMONTH=5;BYDAY=WE;FREQ=MONTHLY -> once a month in May on Wednesday
-// BYMONTH=1,5;BYDAY=TU,WE;FREQ=WEEKLY -> every Tue and Wed in Jan and May
 // BYMONTH=1,5;BYDAY=TU,WE;FREQ=MONTHLY -> once a month in Jan and May on Tuesday and Wednesday
+
 // BYMONTH=5;BYDAY=WE;FREQ=YEARLY -> once a year in May on Wednesday
 // BYMONTH=1,5;BYDAY=TU,WE;FREQ=YEARLY -> once a year in Jan and May on Tue and Wed
 
 // BYMONTH=5;BYDAY=2WE;FREQ=MONTHLY -> every May on the 2nd Wed
 // BYMONTH=5;BYDAY=2WE;FREQ=YEARLY -> save as above
+
 // BYMONTH=1,5;BYDAY=2WE,3TH;FREQ=MONTHLY -> every May on the 2nd Wed
 // BYMONTH=1,5;BYDAY=2WE,3TH;FREQ=YEARLY -> same as above
 //		1	Wed	May	14	2014

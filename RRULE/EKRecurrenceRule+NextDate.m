@@ -178,6 +178,7 @@
 			[dc setDay:self.fixedDayOfTheWeek.dayOfTheWeek - self.dateComponents.weekday];
 			NSDate *tmp = [self.calendar dateByAddingComponents:dc toDate:[self getDate] options:0];
 			self.dateComponents = [self.calendar components:NSUIntegerMax fromDate:tmp];
+			[self enforceByMonthRules];
 		}
 	}
 }
