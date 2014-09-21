@@ -153,11 +153,13 @@
 	{
 		if (self.fixedDayOfTheWeek.weekNumber)
 		{
-			if (self.fixedDayOfTheWeek.weekNumber && self.fixedDayOfTheWeek.weekNumber < self.dateComponents.weekdayOrdinal)
-			{
-				[self addInterval:self.interval];
-				[self enforceByMonthRules];
-			}
+			// this really is unnecessary... even if this falls in the previous interval
+			// the next interval will be correct
+//			if (self.fixedDayOfTheWeek.weekNumber && self.fixedDayOfTheWeek.weekNumber < self.dateComponents.weekdayOrdinal)
+//			{
+//				[self addInterval:self.interval];
+//				[self enforceByMonthRules];
+//			}
 
 			NSDateComponents *cmp = [self.dateComponents copy];
 			cmp = [[NSDateComponents alloc] init];

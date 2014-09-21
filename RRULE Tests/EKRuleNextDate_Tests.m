@@ -398,6 +398,15 @@
 				  result:[Tuple first:[_df dateFromString:@"2014/08/15 09:00:00 GMT"] second:[_df dateFromString:@"2015/01/06 09:00:00 GMT"]]]);
 }
 
+- (void)testByMonthByDayLastWeekOfMonth
+{
+	// BYMONTH=5;BYDAY=-1WE;FREQ=YEARLY
+	XCTAssert([self test:@"BYMONTH=5;BYDAY=-1WE;FREQ=YEARLY"
+				  result:[Tuple first:[_df dateFromString:@"2014/03/15 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/28 09:00:00 GMT"]]]);
+//	XCTAssert([self test:@"BYMONTH=5;BYDAY=-1WE;FREQ=YEARLY"
+//				  result:[Tuple first:[_df dateFromString:@"2014/05/07 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/28 09:00:00 GMT"]]]);
+}
+
 - (void)testByMonthByDayYearly
 {
 	// BYMONTH=5;BYDAY=2WE;FREQ=MONTHLY -> every May on the 2nd Wed
@@ -448,11 +457,7 @@
 
 - (void)testDebugTest
 {
-	XCTAssert([self test:@"BYMONTH=5;BYDAY=2WE;FREQ=MONTHLY" // -> every May on the 2nd Wed
-				  result:[Tuple first:[_df dateFromString:@"2014/03/08 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/14 09:00:00 GMT"]]]);
 
 }
-
-// TODO: add tests for ByDay with -1 (i.e. last Friday of the Month => BYDAY=-1FR -- currently UNSUPPORTED
 
 @end
