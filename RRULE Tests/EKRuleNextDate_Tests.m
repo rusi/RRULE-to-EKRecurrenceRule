@@ -91,15 +91,6 @@
 	XCTAssert([self test:@"FREQ=YEARLY;INTERVAL=4" result:[Tuple first:_startDate second:[_df dateFromString:@"2018/05/05 09:00:00 GMT"]]]);
 }
 
-- (void)testDebugTest
-{
-//	XCTAssert([self test:@"FREQ=MONTHLY;BYDAY=1MO"
-//				  result:[Tuple first:[_df dateFromString:@"2014/07/04 09:00:00 GMT"] second:[_df dateFromString:@"2014/07/07 09:00:00 GMT"]]]);
-
-	XCTAssert([self test:@"FREQ=MONTHLY;BYDAY=1FR,1MO"
-				  result:[Tuple first:[_df dateFromString:@"2014/06/06 09:00:00 GMT"] second:[_df dateFromString:@"2014/07/04 09:00:00 GMT"]]]);
-}
-
 - (void)testNextDateByDayWeekly
 {
 	// Weekly on Tuesday and Thursday:
@@ -212,8 +203,6 @@
 
 - (void)testByMonthDaily
 {
-
-	// DAILY
 	XCTAssert([self test:@"FREQ=DAILY;BYMONTH=5" // May
 				  result:[Tuple first:[_df dateFromString:@"2014/04/30 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/01 09:00:00 GMT"]]]);
 	XCTAssert([self test:@"FREQ=DAILY;BYMONTH=5" // May
@@ -240,7 +229,6 @@
 }
 - (void)testByMonthWeekly
 {
-	// WEEKLY
 	// FREQ=WEEKLY;DTSTART=20140305T080000Z;COUNT=60;BYMONTH=1,5
 	XCTAssert([self test:@"FREQ=WEEKLY;INTERVAL=1;BYMONTH=1,5"
 				  result:[Tuple first:[_df dateFromString:@"2014/03/05 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/07 09:00:00 GMT"]]]);
@@ -287,8 +275,32 @@
 				  result:[Tuple first:[_df dateFromString:@"2014/01/05 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/05 09:00:00 GMT"]]]);
 }
 
-// TODO: add tests for ByMonth & ByDay for Daily, Weekly, Monthly, Yearly, with different intervals
-// BYMONTH=5;BYDAY=TU;FREQ=DAILY -> every Tuesday in May
+- (void)testByMonthByDayDaily
+{
+	XCTAssert([self test:@"BYMONTH=5;BYDAY=TU;FREQ=DAILY" // -> every Tuesday in May
+				  result:[Tuple first:[_df dateFromString:@"2014/05/05 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/06 09:00:00 GMT"]]]);
+	XCTAssert([self test:@"BYMONTH=5;BYDAY=TU;FREQ=DAILY" // -> every Tuesday in May
+				  result:[Tuple first:[_df dateFromString:@"2014/05/08 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/13 09:00:00 GMT"]]]);
+	XCTAssert([self test:@"BYMONTH=5;BYDAY=TU;FREQ=DAILY" // -> every Tuesday in May
+				  result:[Tuple first:[_df dateFromString:@"2014/05/13 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/20 09:00:00 GMT"]]]);
+	XCTAssert([self test:@"BYMONTH=5;BYDAY=TU;FREQ=DAILY" // -> every Tuesday in May
+				  result:[Tuple first:[_df dateFromString:@"2014/05/27 09:00:00 GMT"] second:[_df dateFromString:@"2015/05/05 09:00:00 GMT"]]]);
+	XCTAssert([self test:@"BYMONTH=5;BYDAY=TU;FREQ=DAILY" // -> every Tuesday in May
+				  result:[Tuple first:[_df dateFromString:@"2014/05/28 09:00:00 GMT"] second:[_df dateFromString:@"2015/05/05 09:00:00 GMT"]]]);
+	XCTAssert([self test:@"BYMONTH=5;BYDAY=TU;FREQ=DAILY" // -> every Tuesday in May
+				  result:[Tuple first:[_df dateFromString:@"2014/07/02 09:00:00 GMT"] second:[_df dateFromString:@"2015/05/05 09:00:00 GMT"]]]);
+
+}
+
+- (void)testDebugTest
+{
+	XCTAssert([self test:@"FREQ=MONTHLY;BYDAY=1FR,1MO"
+				  result:[Tuple first:[_df dateFromString:@"2014/05/02 09:00:00 GMT"] second:[_df dateFromString:@"2014/05/05 09:00:00 GMT"]]]); // 1st Friday
+
+	
+}
+
+// TODO: add tests for ByMonth & ByDay for Weekly, Monthly, Yearly, with different intervals
 // BYMONTH=5;BYDAY=TU;FREQ=WEEKLY -> every Tuesday in May
 // BYMONTH=5;BYDAY=WE;FREQ=MONTHLY -> once a month in May on Wednesday
 // BYMONTH=1,5;BYDAY=TU,WE;FREQ=WEEKLY -> every Tue and Wed in Jan and May
