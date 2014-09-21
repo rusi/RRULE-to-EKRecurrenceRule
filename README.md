@@ -7,10 +7,12 @@ In addition, "nextDate" API function is added to EKRecurrenceRule that returns t
 ## Getting Started
 
 - Download RRULE-to-EKRecurrenceRule and play with the included Xcode project.
-- Copy **'EKRecurrenceRule+RRULE.h'** and **'EKRecurrenceRule+RRULE.m'** into your own Xcode project.
-- Copy **'EKRecurrenceRule+NextDate.h'** and **'EKRecurrenceRule+NextDate.m'** into your own Xcode project.
-- Add `#import "EKRecurrenceRule+RRULE.h"` to all files you would like to use RRULE-to-EKRecurrenceRule.
-- Add `#import "EKRecurrenceRule+NextDate.h"` to all files you would like to use EKRecurrenceRule nextDate.
+- For EKRecurrenceRule+RRULE:
+	- Copy **'EKRecurrenceRule+RRULE.h'** and **'EKRecurrenceRule+RRULE.m'** into your own Xcode project.
+	- Add `#import "EKRecurrenceRule+RRULE.h"` to all files you would like to use RRULE-to-EKRecurrenceRule.
+- for EKReccurenceRule+NextDate:
+	- Copy **'EKRecurrenceRule+NextDate.h'** and **'EKRecurrenceRule+NextDate.m'** into your own Xcode project.
+	- Add `#import "EKRecurrenceRule+NextDate.h"` to all files you would like to use EKRecurrenceRule nextDate.
 
 ## Example
 
@@ -25,6 +27,10 @@ In addition, "nextDate" API function is added to EKRecurrenceRule that returns t
     // Result
     EKRecurrenceRule *recurrenceRule = [[EKRecurrenceRule alloc] initWithString:rfc2445String];
     NSLog(@"%@", recurrenceRule);
+
+    // NextDate
+    NSDate *today = [NSDate date];
+    NSDate *nextDate = [recurrenceRule nextDate:today];
 }
 ```
 
@@ -32,17 +38,14 @@ In addition, "nextDate" API function is added to EKRecurrenceRule that returns t
 
 - EKRecurrenceRule does add WKST=SU automatically
 - EKRecurrenceRule does only support DAILY, WEEKLY, MONTHLY, YEARLY frequencies
-- EKRecurrenceRule:nextDate: does NOT support the following features from RFC5545 Recurrence Rule:
-	- Frequences: SECONDLY, MINUTELY, HOURLY
-	- Rules parts: BYSECOND, BYMINUTE, BYHOUR, BYWEEKNO, BYSETPOS
-	- Changing WKST is not supported; default is Sunday
-
-/ ( "BYDAY" "=" bywdaylist ) - WEEKLY | (+/- 1 => MONTHLY | YEARLY (+BYWEEKNO))
-/ ( "BYMONTHDAY" "=" bymodaylist ) [1 to 31 or -31 to -1] - MONTHLY | YEARLY
-/ ( "BYYEARDAY" "=" byyrdaylist ) [1 to 366 or -366 to -1] - only YEARLY
-/ ( "BYMONTH" "=" bymolist )
-/ e.g. FREQ=DAILY;BYMONTH=1    => all days in January
-/ e.g. FREQ=YEARLY;BYMONTH=1,2 => 
+- EKRecurrenceRule:nextDate:
+	- supports:
+		- Frequencies: DAILY, WEEKLY, MONTHLY, YEARLY
+		- Rules: BYMONTH, BYDAY
+	- does NOT support the following features from RFC5545 Recurrence Rule:
+		- Frequencies: SECONDLY, MINUTELY, HOURLY
+		- Rules parts: BYSECOND, BYMINUTE, BYHOUR, BYWEEKNO, BYSETPOS
+		- Changing WKST is not supported; default is Sunday
 
 ### ARC
 
@@ -56,4 +59,12 @@ RRULE-to-EKRecurrenceRule is licensed under the terms of the [Apache License, ve
 
 ## Credits
 
-RRULE-to-EKRecurrenceRule is brought to you by [Jochen Schöllig](http://twitter.com/jochenschoellig) and the [Codeatelier](http://twitter.com/codeatelier) team.
+EKRecurrenceRule+RRULE is brought to you by [Jochen Schöllig](http://twitter.com/jochenschoellig) and the [Codeatelier](http://twitter.com/codeatelier) team.
+
+EKRecurrenceRule+NextDate is brought to you by Ruslan Hristov.
+
+Thanks to:
+----------
+* Jakub Roztocil for his (JavaScript RRule implementation)[http://jakubroztocil.github.io/rrule/]; (RRuleJS on Github)[https://github.com/jakubroztocil/rrule]
+* Marten Gajda fir his (Java RRule implentation)[https://github.com/dmfs/lib-recur]
+* Apache Open For Business (Project)[http://svn.apache.org/repos/asf/ofbiz/trunk/framework/service/src/org/ofbiz/service/calendar/]
