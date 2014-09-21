@@ -133,6 +133,10 @@
 - (void)setFixedDayOfTheWeek:(EKRecurrenceDayOfWeek *)fixedDayOfTheWeek
 {
 	_fixedDayOfTheWeek = fixedDayOfTheWeek;
+
+	if (self.fixedDayOfTheWeek && self.fixedDayOfTheWeek.weekNumber)
+		self.frequency = EKRecurrenceFrequencyMonthly;
+
 	if (self.fixedDayOfTheWeek && !self.fixedDayOfTheWeek.weekNumber
 		&& self.fixedDayOfTheWeek.dayOfTheWeek < self.dateComponents.weekday)
 	{
