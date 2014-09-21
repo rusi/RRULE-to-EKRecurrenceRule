@@ -153,14 +153,6 @@
 	{
 		if (self.fixedDayOfTheWeek.weekNumber)
 		{
-			// this really is unnecessary... even if this falls in the previous interval
-			// the next interval will be correct
-//			if (self.fixedDayOfTheWeek.weekNumber && self.fixedDayOfTheWeek.weekNumber < self.dateComponents.weekdayOrdinal)
-//			{
-//				[self addInterval:self.interval];
-//				[self enforceByMonthRules];
-//			}
-
 			NSDateComponents *cmp = [self.dateComponents copy];
 			cmp = [[NSDateComponents alloc] init];
 			[cmp setWeekday:self.fixedDayOfTheWeek.dayOfTheWeek];
@@ -174,12 +166,6 @@
 		}
 		else
 		{
-//			if (self.fixedDayOfTheWeek.dayOfTheWeek < self.dateComponents.weekday)
-//			{
-//				[self addInterval:self.interval];
-//				[self enforceByMonthRules];
-//			}
-
 			NSDateComponents *dc = [[NSDateComponents alloc] init];
 			[dc setDay:self.fixedDayOfTheWeek.dayOfTheWeek - self.dateComponents.weekday];
 			NSDate *tmp = [self.calendar dateByAddingComponents:dc toDate:[self getDate] options:0];
@@ -237,9 +223,7 @@
 
 - (void)addPotentialDatesTo:(NSMutableArray *)potentialDates startingWith:(DateInfo *)currentInfo// after:(NSDate *)date
 {
-	// if equal, then we add to potential dates; then the interval will pick the next object...
-//	if ([currentInfo compareToDate:date] >= NSOrderedSame)
-		[potentialDates addObject:currentInfo];
+	[potentialDates addObject:currentInfo];
 
 	DateInfo *lastInfo = [currentInfo copy];
 	for (int i = 0; i < self.interval; ++i)
@@ -276,8 +260,6 @@
 			DateInfo *info = [[DateInfo alloc] initWithComponents:currentDateComponents frequency:freq andInterval:self.interval];
 			info.fixedMonth = [month integerValue];
 			[seeding addObject:info];
-//			[info enforceRules];
-//			[self addPotentialDatesTo:potentialDates startingWith:info];//] after:date];
 		}
 	}
 
