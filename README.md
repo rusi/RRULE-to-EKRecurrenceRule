@@ -2,7 +2,7 @@
 
 RRULE-to-EKRecurrenceRule is the easiest way to transform a RRULE string representation (~~[RFC 2445](http://www.ietf.org/rfc/rfc2445.txt)~~ [RFC5545](http://tools.ietf.org/html/rfc5545)) into an [EKRecurrenceRule](http://developer.apple.com/library/ios/#documentation/EventKit/Reference/EKRecurrenceRuleClassRef/Reference/Reference.html). **'EKRecurrenceRule+RRULE'** is an Objective-C category which adds a new initializer to the EKRecurrenceRule class. EKRecurrenceRule is available in iOS 4.0 and later and needs the EventKit framework.
 
-In addition, "nextDate" API function is added to EKRecurrenceRule that returns the next date based on the specified recurrence rules.
+In addition, **'EKRecurrenceRule+NextDate'** adds "nextDate" API function that returns the next date based on the specified recurrence rules.
 
 ## Getting Started
 
@@ -18,6 +18,7 @@ In addition, "nextDate" API function is added to EKRecurrenceRule that returns t
 
 ``` objective-c
 #import "EKRecurrenceRule+RRULE.h"
+#import "EKRecurrenceRule+NextDate.h"
 
 - (void)testMethod
 {
