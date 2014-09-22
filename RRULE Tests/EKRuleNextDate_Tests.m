@@ -457,7 +457,7 @@
 
 - (void)testDebugTest
 {
-
+	// FREQ=MONTHLY;BYDAY=MO,TU,WE,TH,FR;BYSETPOS=-2 // The 2nd to last weekday of the month
 }
 
 @end

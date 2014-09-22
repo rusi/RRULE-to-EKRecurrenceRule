@@ -3,6 +3,8 @@
 RRULE-to-EKRecurrenceRule is the easiest way to transform a RRULE string representation (~~[RFC 2445](http://www.ietf.org/rfc/rfc2445.txt)~~ [RFC5545](http://tools.ietf.org/html/rfc5545)) into an [EKRecurrenceRule](http://developer.apple.com/library/ios/#documentation/EventKit/Reference/EKRecurrenceRuleClassRef/Reference/Reference.html). **'EKRecurrenceRule+RRULE'** is an Objective-C category which adds a new initializer to the EKRecurrenceRule class. EKRecurrenceRule is available in iOS 4.0 and later and needs the EventKit framework.
 
 In addition, **'EKRecurrenceRule+NextDate'** adds "nextDate" API function that returns the next date based on the specified recurrence rules.
+Similarly, **'EKRecurrenceRule+HumanDescription'** adds "humanDescription" API function that returns a human readable description of the
+recurrence rule.
 
 ## Getting Started
 
@@ -13,17 +15,21 @@ In addition, **'EKRecurrenceRule+NextDate'** adds "nextDate" API function that r
 - for EKReccurenceRule+NextDate:
 	- Copy **'EKRecurrenceRule+NextDate.h'** and **'EKRecurrenceRule+NextDate.m'** into your own Xcode project.
 	- Add `#import "EKRecurrenceRule+NextDate.h"` to all files you would like to use EKRecurrenceRule nextDate.
+- for EKReccurenceRule+HumanDescription:
+	- Copy **'EKRecurrenceRule+HumanDescription.h'** and **'EKRecurrenceRule+HumanDescription.m'** into your own Xcode project.
+	- Add `#import "EKRecurrenceRule+HumanDescription.h"` to all files you would like to use EKRecurrenceRule humanDescription.
 
 ## Example
 
 ``` objective-c
 #import "EKRecurrenceRule+RRULE.h"
 #import "EKRecurrenceRule+NextDate.h"
+#import "EKRecurrenceRule+HumanDescription.h"
 
 - (void)testMethod
 {
     // Test
-    NSString *rfc2445String = @"FREQ=MONTHLY;BYDAY=MO,TU,WE,TH,FR;BYSETPOS=-2"; // The 2nd to last weekday of the month
+    NSString *rfc2445String = @"BYMONTH=1,5;BYDAY=2WE,3TH;FREQ=MONTHLY"; // Every January and May on the 2nd Wednesday and 3rd Thursday
 
     // Result
     EKRecurrenceRule *recurrenceRule = [[EKRecurrenceRule alloc] initWithString:rfc2445String];
@@ -32,6 +38,10 @@ In addition, **'EKRecurrenceRule+NextDate'** adds "nextDate" API function that r
     // NextDate
     NSDate *today = [NSDate date];
     NSDate *nextDate = [recurrenceRule nextDate:today];
+
+    // HumanDescription
+    NSString *desc = [recurrenceRule humanDescription];
+    // will print "Every January and May on the 2nd Wednesday and 3rd Thursday"
 }
 ```
 
@@ -39,7 +49,7 @@ In addition, **'EKRecurrenceRule+NextDate'** adds "nextDate" API function that r
 
 - EKRecurrenceRule does add WKST=SU automatically
 - EKRecurrenceRule does only support DAILY, WEEKLY, MONTHLY, YEARLY frequencies
-- EKRecurrenceRule:nextDate:
+- EKRecurrenceRule:nextDate & EKRecurrenceRule:humanDescription:
 	- supports:
 		- Frequencies: DAILY, WEEKLY, MONTHLY, YEARLY
 		- Rules: BYMONTH, BYDAY
@@ -62,7 +72,7 @@ RRULE-to-EKRecurrenceRule is licensed under the terms of the [Apache License, ve
 
 EKRecurrenceRule+RRULE is brought to you by [Jochen Schöllig](http://twitter.com/jochenschoellig) and the [Codeatelier](http://twitter.com/codeatelier) team.
 
-EKRecurrenceRule+NextDate is brought to you by Ruslan Hristov.
+EKRecurrenceRule+NextDate & EKRecurrenceRule+HumanDescription is brought to you by Ruslan Hristov.
 
 Thanks to:
 ----------
