@@ -27,6 +27,8 @@
 		DF44115C19BFE30600E762CF /* EKRuleNextDate_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF44115B19BFE30600E762CF /* EKRuleNextDate_Tests.m */; };
 		DF44116719C119E500E762CF /* EKRecurrenceRule+NextDate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF44116619C119E500E762CF /* EKRecurrenceRule+NextDate.m */; };
 		DF44116919C15D0700E762CF /* EKRRuleFromString_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF44116819C15D0700E762CF /* EKRRuleFromString_Tests.m */; };
+		DFB55A6219CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB55A6119CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m */; };
+		DFB55A6419CF3CC000DBB072 /* EKRuleHumanDescription_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB55A6319CF3CC000DBB072 /* EKRuleHumanDescription_Tests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,9 @@
 		DF44116519C119E500E762CF /* EKRecurrenceRule+NextDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKRecurrenceRule+NextDate.h"; sourceTree = "<group>"; };
 		DF44116619C119E500E762CF /* EKRecurrenceRule+NextDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKRecurrenceRule+NextDate.m"; sourceTree = "<group>"; };
 		DF44116819C15D0700E762CF /* EKRRuleFromString_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKRRuleFromString_Tests.m; sourceTree = "<group>"; };
+		DFB55A6019CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKRecurrenceRule+HumanDescription.h"; sourceTree = "<group>"; };
+		DFB55A6119CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKRecurrenceRule+HumanDescription.m"; sourceTree = "<group>"; };
+		DFB55A6319CF3CC000DBB072 /* EKRuleHumanDescription_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKRuleHumanDescription_Tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,9 +141,11 @@
 				19E771BF171FED9B006C8607 /* CAViewController.m */,
 				1965122317253D3B00EECEAC /* EKRecurrenceRule+RRULE.h */,
 				1965122417253D3B00EECEAC /* EKRecurrenceRule+RRULE.m */,
-				19E771AA171FED9B006C8607 /* Supporting Files */,
 				DF44116519C119E500E762CF /* EKRecurrenceRule+NextDate.h */,
 				DF44116619C119E500E762CF /* EKRecurrenceRule+NextDate.m */,
+				DFB55A6019CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.h */,
+				DFB55A6119CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m */,
+				19E771AA171FED9B006C8607 /* Supporting Files */,
 			);
 			path = RRULE;
 			sourceTree = "<group>";
@@ -160,6 +167,7 @@
 		DF44115519BFE30600E762CF /* RRULE Tests */ = {
 			isa = PBXGroup;
 			children = (
+				DFB55A6319CF3CC000DBB072 /* EKRuleHumanDescription_Tests.m */,
 				DF44116819C15D0700E762CF /* EKRRuleFromString_Tests.m */,
 				DF44115B19BFE30600E762CF /* EKRuleNextDate_Tests.m */,
 				DF44115619BFE30600E762CF /* Supporting Files */,
@@ -280,6 +288,7 @@
 				19E771B4171FED9B006C8607 /* CAAppDelegate.m in Sources */,
 				DF44116719C119E500E762CF /* EKRecurrenceRule+NextDate.m in Sources */,
 				19E771C0171FED9B006C8607 /* CAViewController.m in Sources */,
+				DFB55A6219CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m in Sources */,
 				1965122517253D3B00EECEAC /* EKRecurrenceRule+RRULE.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF44115C19BFE30600E762CF /* EKRuleNextDate_Tests.m in Sources */,
+				DFB55A6419CF3CC000DBB072 /* EKRuleHumanDescription_Tests.m in Sources */,
 				DF44116919C15D0700E762CF /* EKRRuleFromString_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
