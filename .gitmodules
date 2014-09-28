@@ -1,0 +1,4 @@
+
+[submodule "third-party/MultiSelectSegmentedControl"]
+	path = third-party/MultiSelectSegmentedControl
+	url = git@github.com:yonat/MultiSelectSegmentedControl.git

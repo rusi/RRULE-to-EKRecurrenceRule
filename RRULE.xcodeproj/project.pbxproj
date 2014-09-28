@@ -27,8 +27,11 @@
 		DF44115C19BFE30600E762CF /* EKRuleNextDate_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF44115B19BFE30600E762CF /* EKRuleNextDate_Tests.m */; };
 		DF44116719C119E500E762CF /* EKRecurrenceRule+NextDate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF44116619C119E500E762CF /* EKRecurrenceRule+NextDate.m */; };
 		DF44116919C15D0700E762CF /* EKRRuleFromString_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF44116819C15D0700E762CF /* EKRRuleFromString_Tests.m */; };
+		DF84440719D76C150068F726 /* MultiSelectSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DF84440619D76C150068F726 /* MultiSelectSegmentedControl.m */; };
+		DF84440A19D76C570068F726 /* RHReccurenceRuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF84440919D76C570068F726 /* RHReccurenceRuleViewController.m */; };
 		DFB55A6219CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB55A6119CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m */; };
 		DFB55A6419CF3CC000DBB072 /* EKRuleHumanDescription_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB55A6319CF3CC000DBB072 /* EKRuleHumanDescription_Tests.m */; };
+		DFC3F67019D50D4900EA1280 /* RHRecurrenceRuleChooser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFC3F66F19D50D4900EA1280 /* RHRecurrenceRuleChooser.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,9 +73,14 @@
 		DF44116519C119E500E762CF /* EKRecurrenceRule+NextDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKRecurrenceRule+NextDate.h"; sourceTree = "<group>"; };
 		DF44116619C119E500E762CF /* EKRecurrenceRule+NextDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKRecurrenceRule+NextDate.m"; sourceTree = "<group>"; };
 		DF44116819C15D0700E762CF /* EKRRuleFromString_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKRRuleFromString_Tests.m; sourceTree = "<group>"; };
+		DF84440519D76C150068F726 /* MultiSelectSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MultiSelectSegmentedControl.h; path = "third-party/MultiSelectSegmentedControl/MultiSelectSegmentedControl.h"; sourceTree = SOURCE_ROOT; };
+		DF84440619D76C150068F726 /* MultiSelectSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MultiSelectSegmentedControl.m; path = "third-party/MultiSelectSegmentedControl/MultiSelectSegmentedControl.m"; sourceTree = SOURCE_ROOT; };
+		DF84440819D76C570068F726 /* RHReccurenceRuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHReccurenceRuleViewController.h; sourceTree = "<group>"; };
+		DF84440919D76C570068F726 /* RHReccurenceRuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHReccurenceRuleViewController.m; sourceTree = "<group>"; };
 		DFB55A6019CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKRecurrenceRule+HumanDescription.h"; sourceTree = "<group>"; };
 		DFB55A6119CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKRecurrenceRule+HumanDescription.m"; sourceTree = "<group>"; };
 		DFB55A6319CF3CC000DBB072 /* EKRuleHumanDescription_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKRuleHumanDescription_Tests.m; sourceTree = "<group>"; };
+		DFC3F66F19D50D4900EA1280 /* RHRecurrenceRuleChooser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RHRecurrenceRuleChooser.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +142,7 @@
 		19E771A9171FED9B006C8607 /* RRULE */ = {
 			isa = PBXGroup;
 			children = (
+				DF8443F219D74F8A0068F726 /* third-party */,
 				19E771B2171FED9B006C8607 /* CAAppDelegate.h */,
 				19E771B3171FED9B006C8607 /* CAAppDelegate.m */,
 				19E771BB171FED9B006C8607 /* MainStoryboard.storyboard */,
@@ -146,6 +155,9 @@
 				DFB55A6019CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.h */,
 				DFB55A6119CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m */,
 				19E771AA171FED9B006C8607 /* Supporting Files */,
+				DFC3F66F19D50D4900EA1280 /* RHRecurrenceRuleChooser.storyboard */,
+				DF84440819D76C570068F726 /* RHReccurenceRuleViewController.h */,
+				DF84440919D76C570068F726 /* RHReccurenceRuleViewController.m */,
 			);
 			path = RRULE;
 			sourceTree = "<group>";
@@ -183,6 +195,15 @@
 				DF44115D19BFE30600E762CF /* RRULE Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DF8443F219D74F8A0068F726 /* third-party */ = {
+			isa = PBXGroup;
+			children = (
+				DF84440519D76C150068F726 /* MultiSelectSegmentedControl.h */,
+				DF84440619D76C150068F726 /* MultiSelectSegmentedControl.m */,
+			);
+			name = "third-party";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19E771AE171FED9B006C8607 /* InfoPlist.strings in Resources */,
+				DFC3F67019D50D4900EA1280 /* RHRecurrenceRuleChooser.storyboard in Resources */,
 				19E771B6171FED9B006C8607 /* Default.png in Resources */,
 				19E771B8171FED9B006C8607 /* Default@2x.png in Resources */,
 				19E771BA171FED9B006C8607 /* Default-568h@2x.png in Resources */,
@@ -288,7 +310,9 @@
 				19E771B4171FED9B006C8607 /* CAAppDelegate.m in Sources */,
 				DF44116719C119E500E762CF /* EKRecurrenceRule+NextDate.m in Sources */,
 				19E771C0171FED9B006C8607 /* CAViewController.m in Sources */,
+				DF84440A19D76C570068F726 /* RHReccurenceRuleViewController.m in Sources */,
 				DFB55A6219CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m in Sources */,
+				DF84440719D76C150068F726 /* MultiSelectSegmentedControl.m in Sources */,
 				1965122517253D3B00EECEAC /* EKRecurrenceRule+RRULE.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

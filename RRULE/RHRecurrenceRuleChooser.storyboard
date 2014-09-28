@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DHL-EN-jZA">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Reccurence Rule View Controller-->
+        <scene sceneID="UhO-WQ-PM2">
+            <objects>
+                <viewController id="DHL-EN-jZA" customClass="RHReccurenceRuleViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vrd-xx-CgX"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yz6-ZV-LSN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zZe-n9-e1y">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repeat every 1 week" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTb-e6-m4u">
+                                <rect key="frame" x="153" y="44" width="189.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mWN-LR-v5k">
+                                <rect key="frame" x="153" y="81" width="293" height="29"/>
+                                <segments>
+                                    <segment title="days"/>
+                                    <segment title="weeks"/>
+                                    <segment title="months"/>
+                                    <segment title="years"/>
+                                </segments>
+                                <connections>
+                                    <action selector="frequencySelected:" destination="DHL-EN-jZA" eventType="valueChanged" id="Q9i-FU-9Vc"/>
+                                </connections>
+                            </segmentedControl>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="PU0-eM-hKX">
+                                <rect key="frame" x="352" y="40" width="94" height="29"/>
+                                <connections>
+                                    <action selector="intervalStepperChanged:" destination="DHL-EN-jZA" eventType="valueChanged" id="Zhk-Hn-hab"/>
+                                </connections>
+                            </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specific months only:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5M1-29-4sS">
+                                <rect key="frame" x="153" y="224" width="293" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days of the week:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ysm-qO-2B1">
+                                <rect key="frame" x="153" y="139" width="293" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*applies to all months if nothing is selected" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eO1-OS-4Ft">
+                                <rect key="frame" x="153" y="244" width="293" height="14.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Mtv-ZD-Wdp" customClass="MultiSelectSegmentedControl">
+                                <rect key="frame" x="153" y="261" width="293" height="29"/>
+                                <segments>
+                                    <segment title="Jan"/>
+                                    <segment title="Feb"/>
+                                    <segment title="Mar"/>
+                                    <segment title="Apr"/>
+                                    <segment title="May"/>
+                                    <segment title="Jun"/>
+                                </segments>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HyH-eq-i1g" customClass="MultiSelectSegmentedControl">
+                                <rect key="frame" x="153" y="289" width="293" height="29"/>
+                                <segments>
+                                    <segment title="Jul"/>
+                                    <segment title="Aug"/>
+                                    <segment title="Sep"/>
+                                    <segment title="Oct"/>
+                                    <segment title="Nov"/>
+                                    <segment title="Dec"/>
+                                </segments>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fET-gm-H98" customClass="MultiSelectSegmentedControl">
+                                <rect key="frame" x="153" y="166" width="293" height="29"/>
+                                <segments>
+                                    <segment title="Sun"/>
+                                    <segment title="Mon"/>
+                                    <segment title="Tue"/>
+                                    <segment title="Wed"/>
+                                    <segment title="Thu"/>
+                                    <segment title="Fri"/>
+                                    <segment title="Sat"/>
+                                </segments>
+                            </segmentedControl>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9oC-WT-ufO">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" systemItem="cancel" id="Iki-Ry-MDI">
+                                        <connections>
+                                            <action selector="cancel:" destination="DHL-EN-jZA" id="Zkt-fz-HpX"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="sVL-6l-SSk"/>
+                                    <barButtonItem title="Item" systemItem="save" id="naH-YB-ehG"/>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npk-WK-as2">
+                                <rect key="frame" x="16" y="520" width="568" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5M1-29-4sS" firstAttribute="top" secondItem="fET-gm-H98" secondAttribute="bottom" constant="30" id="0dJ-2h-fDe"/>
+                            <constraint firstItem="mWN-LR-v5k" firstAttribute="trailing" secondItem="PU0-eM-hKX" secondAttribute="trailing" id="2zI-M0-44H"/>
+                            <constraint firstItem="fET-gm-H98" firstAttribute="trailing" secondItem="Mtv-ZD-Wdp" secondAttribute="trailing" id="5em-e5-uxc"/>
+                            <constraint firstItem="fET-gm-H98" firstAttribute="leading" secondItem="Ysm-qO-2B1" secondAttribute="leading" id="6ew-Fd-ifs"/>
+                            <constraint firstItem="mWN-LR-v5k" firstAttribute="leading" secondItem="JTb-e6-m4u" secondAttribute="leading" id="933-gC-Kaw"/>
+                            <constraint firstItem="5M1-29-4sS" firstAttribute="leading" secondItem="eO1-OS-4Ft" secondAttribute="leading" id="9YE-X9-eZM"/>
+                            <constraint firstItem="PU0-eM-hKX" firstAttribute="leading" secondItem="JTb-e6-m4u" secondAttribute="trailing" constant="9" id="9Zd-Nk-puz"/>
+                            <constraint firstItem="9oC-WT-ufO" firstAttribute="top" secondItem="npk-WK-as2" secondAttribute="bottom" constant="15" id="BEG-V6-Wrt"/>
+                            <constraint firstItem="mWN-LR-v5k" firstAttribute="top" secondItem="PU0-eM-hKX" secondAttribute="bottom" constant="12" id="DHT-d2-tYL"/>
+                            <constraint firstItem="Ysm-qO-2B1" firstAttribute="top" secondItem="mWN-LR-v5k" secondAttribute="bottom" constant="30" id="E6N-eZ-j8g"/>
+                            <constraint firstItem="PU0-eM-hKX" firstAttribute="top" secondItem="vrd-xx-CgX" secondAttribute="bottom" constant="20" id="EWZ-iK-6kz"/>
+                            <constraint firstAttribute="centerX" secondItem="mWN-LR-v5k" secondAttribute="centerX" id="FEs-mJ-NGS"/>
+                            <constraint firstItem="JTb-e6-m4u" firstAttribute="centerY" secondItem="PU0-eM-hKX" secondAttribute="centerY" id="GTt-0M-XGM"/>
+                            <constraint firstItem="eO1-OS-4Ft" firstAttribute="top" secondItem="5M1-29-4sS" secondAttribute="bottom" id="M0q-Fl-Ind"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="9oC-WT-ufO" secondAttribute="bottom" id="M4k-2X-rG8"/>
+                            <constraint firstItem="5M1-29-4sS" firstAttribute="leading" secondItem="HyH-eq-i1g" secondAttribute="leading" id="NLR-oB-1s8"/>
+                            <constraint firstItem="mWN-LR-v5k" firstAttribute="trailing" secondItem="fET-gm-H98" secondAttribute="trailing" id="Qq0-kW-3kJ"/>
+                            <constraint firstItem="npk-WK-as2" firstAttribute="leading" secondItem="zZe-n9-e1y" secondAttribute="leadingMargin" id="RW9-Rd-qcr"/>
+                            <constraint firstItem="5M1-29-4sS" firstAttribute="trailing" secondItem="HyH-eq-i1g" secondAttribute="trailing" id="TFG-jy-Ex1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9oC-WT-ufO" secondAttribute="trailing" constant="-16" id="Uub-Y4-m6q"/>
+                            <constraint firstItem="mWN-LR-v5k" firstAttribute="leading" secondItem="fET-gm-H98" secondAttribute="leading" id="Vr5-ES-7M9"/>
+                            <constraint firstItem="9oC-WT-ufO" firstAttribute="leading" secondItem="zZe-n9-e1y" secondAttribute="leadingMargin" constant="-16" id="ZQh-6f-lUR"/>
+                            <constraint firstItem="5M1-29-4sS" firstAttribute="trailing" secondItem="eO1-OS-4Ft" secondAttribute="trailing" id="ZqO-CU-0oT"/>
+                            <constraint firstItem="npk-WK-as2" firstAttribute="trailing" secondItem="zZe-n9-e1y" secondAttribute="trailingMargin" id="aKg-1y-los"/>
+                            <constraint firstItem="5M1-29-4sS" firstAttribute="trailing" secondItem="Mtv-ZD-Wdp" secondAttribute="trailing" id="cJU-JL-tcH"/>
+                            <constraint firstItem="5M1-29-4sS" firstAttribute="leading" secondItem="Mtv-ZD-Wdp" secondAttribute="leading" id="dmc-It-37R"/>
+                            <constraint firstItem="Mtv-ZD-Wdp" firstAttribute="top" secondItem="eO1-OS-4Ft" secondAttribute="bottom" constant="3" id="eNW-Db-l5X"/>
+                            <constraint firstItem="fET-gm-H98" firstAttribute="leading" secondItem="Mtv-ZD-Wdp" secondAttribute="leading" id="kRc-UO-Rgd"/>
+                            <constraint firstItem="HyH-eq-i1g" firstAttribute="top" secondItem="Mtv-ZD-Wdp" secondAttribute="bottom" id="pdn-zs-6Ba"/>
+                            <constraint firstItem="fET-gm-H98" firstAttribute="trailing" secondItem="Ysm-qO-2B1" secondAttribute="trailing" id="qup-d3-JB9"/>
+                            <constraint firstItem="fET-gm-H98" firstAttribute="top" secondItem="Ysm-qO-2B1" secondAttribute="bottom" constant="6" id="y8E-5q-ZtZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="daysOfTheWeekSegment" destination="fET-gm-H98" id="AyH-vo-FCx"/>
+                        <outlet property="intervalLabel" destination="JTb-e6-m4u" id="Ryj-Zl-xUv"/>
+                        <outlet property="intervalStepper" destination="PU0-eM-hKX" id="co8-JI-sgA"/>
+                        <outlet property="monthsSegmentA" destination="Mtv-ZD-Wdp" id="K5o-f7-qBY"/>
+                        <outlet property="monthsSegmentB" destination="HyH-eq-i1g" id="1c2-vB-6RA"/>
+                        <outlet property="ruleText" destination="npk-WK-as2" id="k8b-FK-k0Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9ke-Jo-BCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-829" y="-1004"/>
+        </scene>
+        <!--Recurrence Rule Table View Controller-->
+        <scene sceneID="eMR-dd-svp">
+            <objects>
+                <tableViewController storyboardIdentifier="RecurrenceRuleChooser" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YeQ-hb-ewg" customClass="RHRecurrenceRuleTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="HJ4-Mj-Dvo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="fet-FV-JX3">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem systemItem="cancel" id="APf-33-4UB">
+                                    <connections>
+                                        <action selector="cancel:" destination="YeQ-hb-ewg" id="3Jd-kj-Qtm"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="v5R-bK-TqK"/>
+                                <barButtonItem systemItem="save" id="tl8-hs-Gg9">
+                                    <connections>
+                                        <action selector="save:" destination="YeQ-hb-ewg" id="ypm-mA-Npm"/>
+                                    </connections>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
+                        <sections>
+                            <tableViewSection id="ian-ZJ-YRg">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="RepeatInterval" rowHeight="114" id="w4p-3t-Zwu">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w4p-3t-Zwu" id="I3b-Kn-fnf">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repeat every 1 week" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMA-s7-oHk">
+                                                    <rect key="frame" x="149.5" y="32" width="197.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Skh-2B-hKT">
+                                                    <rect key="frame" x="150" y="69" width="300" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="300" id="NLu-Rj-wGN"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="days"/>
+                                                        <segment title="weeks"/>
+                                                        <segment title="months"/>
+                                                        <segment title="years"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="8nJ-1b-fDh">
+                                                    <rect key="frame" x="356" y="28" width="94" height="29"/>
+                                                </stepper>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="8nJ-1b-fDh" firstAttribute="top" secondItem="I3b-Kn-fnf" secondAttribute="topMargin" constant="20" id="4z0-Oh-niJ"/>
+                                                <constraint firstItem="Skh-2B-hKT" firstAttribute="leading" secondItem="dMA-s7-oHk" secondAttribute="leading" id="CnA-b6-5ad"/>
+                                                <constraint firstItem="dMA-s7-oHk" firstAttribute="centerY" secondItem="8nJ-1b-fDh" secondAttribute="centerY" id="QCX-Nd-rHp"/>
+                                                <constraint firstItem="Skh-2B-hKT" firstAttribute="top" secondItem="8nJ-1b-fDh" secondAttribute="bottom" constant="12" id="RFW-Sv-nBa"/>
+                                                <constraint firstItem="8nJ-1b-fDh" firstAttribute="leading" secondItem="dMA-s7-oHk" secondAttribute="trailing" constant="9" id="csn-6i-pDv"/>
+                                                <constraint firstAttribute="centerX" secondItem="Skh-2B-hKT" secondAttribute="centerX" id="dyq-NE-5ha"/>
+                                                <constraint firstItem="Skh-2B-hKT" firstAttribute="trailing" secondItem="8nJ-1b-fDh" secondAttribute="trailing" id="iBY-uc-5YR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="DaysOfTheWeek" rowHeight="83" id="b0H-GX-dds">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b0H-GX-dds" id="Bo8-Nf-nC5">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days of the week:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRy-rS-QcB">
+                                                    <rect key="frame" x="149.5" y="11" width="300" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0Lb-1t-z6M" customClass="MultiSelectSegmentedControl">
+                                                    <rect key="frame" x="150" y="37" width="300" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="300" id="SVt-gS-T8p"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="Sun"/>
+                                                        <segment title="Mon"/>
+                                                        <segment title="Tue"/>
+                                                        <segment title="Wed"/>
+                                                        <segment title="Thu"/>
+                                                        <segment title="Fri"/>
+                                                        <segment title="Sat"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0Lb-1t-z6M" firstAttribute="top" secondItem="KRy-rS-QcB" secondAttribute="bottom" constant="6" id="4uZ-aT-EEv"/>
+                                                <constraint firstItem="KRy-rS-QcB" firstAttribute="top" secondItem="Bo8-Nf-nC5" secondAttribute="topMargin" constant="3" id="JkP-Ek-52Y"/>
+                                                <constraint firstItem="0Lb-1t-z6M" firstAttribute="trailing" secondItem="KRy-rS-QcB" secondAttribute="trailing" id="MEz-GX-XW9"/>
+                                                <constraint firstAttribute="centerX" secondItem="0Lb-1t-z6M" secondAttribute="centerX" id="YP3-53-pZX"/>
+                                                <constraint firstItem="0Lb-1t-z6M" firstAttribute="leading" secondItem="KRy-rS-QcB" secondAttribute="leading" id="nja-yu-Xtv"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="SpecificMonths" rowHeight="130" id="NFr-Ud-Yjp">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NFr-Ud-Yjp" id="4ct-CJ-UhT">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specific months only:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ufd-gy-DnA">
+                                                    <rect key="frame" x="150" y="11" width="300" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*applies to all months if nothing is selected" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1q-ns-zsg">
+                                                    <rect key="frame" x="150" y="31" width="300" height="14.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="055-yd-pYi" customClass="MultiSelectSegmentedControl">
+                                                    <rect key="frame" x="150" y="48" width="300" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="300" id="MDe-0g-ube"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="Jan"/>
+                                                        <segment title="Feb"/>
+                                                        <segment title="Mar"/>
+                                                        <segment title="Apr"/>
+                                                        <segment title="May"/>
+                                                        <segment title="Jun"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hot-TC-ATH" customClass="MultiSelectSegmentedControl">
+                                                    <rect key="frame" x="150" y="76" width="300" height="29"/>
+                                                    <segments>
+                                                        <segment title="Jul"/>
+                                                        <segment title="Aug"/>
+                                                        <segment title="Sep"/>
+                                                        <segment title="Oct"/>
+                                                        <segment title="Nov"/>
+                                                        <segment title="Dec"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ufd-gy-DnA" firstAttribute="top" secondItem="4ct-CJ-UhT" secondAttribute="topMargin" constant="3" id="1AT-0b-nnH"/>
+                                                <constraint firstItem="O1q-ns-zsg" firstAttribute="top" secondItem="Ufd-gy-DnA" secondAttribute="bottom" id="26p-4j-reI"/>
+                                                <constraint firstItem="Ufd-gy-DnA" firstAttribute="leading" secondItem="hot-TC-ATH" secondAttribute="leading" id="7IQ-6N-g1L"/>
+                                                <constraint firstItem="hot-TC-ATH" firstAttribute="top" secondItem="055-yd-pYi" secondAttribute="bottom" id="7Lc-27-NFW"/>
+                                                <constraint firstItem="Ufd-gy-DnA" firstAttribute="trailing" secondItem="hot-TC-ATH" secondAttribute="trailing" id="98i-Ep-2Ge"/>
+                                                <constraint firstItem="Ufd-gy-DnA" firstAttribute="leading" secondItem="055-yd-pYi" secondAttribute="leading" id="ABq-9x-PX6"/>
+                                                <constraint firstAttribute="centerX" secondItem="055-yd-pYi" secondAttribute="centerX" id="B0j-we-zzl"/>
+                                                <constraint firstItem="Ufd-gy-DnA" firstAttribute="trailing" secondItem="055-yd-pYi" secondAttribute="trailing" id="G3F-rx-pWv"/>
+                                                <constraint firstItem="055-yd-pYi" firstAttribute="top" secondItem="O1q-ns-zsg" secondAttribute="bottom" constant="3" id="IYg-FS-LLJ"/>
+                                                <constraint firstItem="Ufd-gy-DnA" firstAttribute="trailing" secondItem="O1q-ns-zsg" secondAttribute="trailing" id="ZRw-Zj-00j"/>
+                                                <constraint firstItem="Ufd-gy-DnA" firstAttribute="leading" secondItem="O1q-ns-zsg" secondAttribute="leading" id="sGf-Aj-9uZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="YeQ-hb-ewg" id="0Ys-fX-s9q"/>
+                            <outlet property="delegate" destination="YeQ-hb-ewg" id="ETD-bB-brD"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vPj-ZT-nKE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-139" y="-991"/>
+        </scene>
+    </scenes>
+</document>
