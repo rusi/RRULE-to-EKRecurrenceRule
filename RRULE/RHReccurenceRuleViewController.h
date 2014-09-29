@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <EventKit/EventKit.h>
+
+@protocol RHRecurrenceRuleViewControllerDelegate <NSObject>
+- (void)recurrenceRuleCreated:(EKRecurrenceRule *)rule;
+@end
 
 @interface RHReccurenceRuleViewController : UIViewController
+
+@property (nonatomic, weak) id<RHRecurrenceRuleViewControllerDelegate> delegate;
+
+- (void)setEditRule:(EKRecurrenceRule *)editRule;
 
 @end

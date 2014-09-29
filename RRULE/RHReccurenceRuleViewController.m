@@ -15,9 +15,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *intervalLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *intervalStepper;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *freqSegment;
 @property (weak, nonatomic) IBOutlet MultiSelectSegmentedControl *daysOfTheWeekSegment;
 @property (weak, nonatomic) IBOutlet MultiSelectSegmentedControl *monthsSegmentA;
 @property (weak, nonatomic) IBOutlet MultiSelectSegmentedControl *monthsSegmentB;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @property (weak, nonatomic) IBOutlet UILabel *ruleText;
 
@@ -27,6 +29,8 @@
 @property (nonatomic, assign) NSInteger interval;
 @property (nonatomic, strong) NSMutableSet *daysOfTheWeek;
 @property (nonatomic, strong) NSMutableSet *monthsOfTheYear;
+
+@property (nonatomic, assign) BOOL editing;
 @end
 
 @implementation RHReccurenceRuleViewController
@@ -62,13 +66,57 @@
 	self.daysOfTheWeekSegment.delegate = self;
 	self.monthsSegmentA.delegate = self;
 	self.monthsSegmentB.delegate = self;
-	[self disableDaysOfTheWeek];
+
+	[self updateControls];
 	[self updateIntervalLabel];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setEditRule:(EKRecurrenceRule *)editRule
+{
+	self.editing = YES;
+	self.freq = editRule.frequency;
+	self.interval = editRule.interval;
+	self.daysOfTheWeek = [[NSMutableSet alloc] initWithArray:editRule.daysOfTheWeek];
+	self.monthsOfTheYear = [[NSMutableSet alloc] initWithArray:editRule.monthsOfTheYear];
+
+	[self updateControls];
+}
+
+- (void)updateControls
+{
+	UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(saveRule:)];
+	self.navigationItem.rightBarButtonItem = barButton;
+
+	self.toolbar.hidden = self.editing;
+
+	self.freqSegment.selectedSegmentIndex = self.freq;
+	self.daysOfTheWeekSegment.enabled = (self.freq == EKRecurrenceFrequencyWeekly);
+
+	self.intervalStepper.value = self.interval;
+	NSMutableIndexSet *selectedDaysOfTheWeek = [[NSMutableIndexSet alloc] init];
+	for (EKRecurrenceDayOfWeek *dayOfTheWeek in self.daysOfTheWeek)
+	{
+		[selectedDaysOfTheWeek addIndex:dayOfTheWeek.dayOfTheWeek-1];
+	}
+	self.daysOfTheWeekSegment.selectedSegmentIndexes = selectedDaysOfTheWeek;
+	NSMutableIndexSet *monthsA = [[NSMutableIndexSet alloc] init];
+	NSMutableIndexSet *monthsB = [[NSMutableIndexSet alloc] init];
+	for (NSNumber *month in self.monthsOfTheYear)
+	{
+		if (month.intValue <= 6)
+			[monthsA addIndex:month.intValue-1];
+		else
+			[monthsB addIndex:month.intValue-1-6];
+	}
+	self.monthsSegmentA.selectedSegmentIndexes = monthsA;
+	self.monthsSegmentB.selectedSegmentIndexes = monthsB;
+
+	[self updateIntervalLabel];
 }
 
 //- (EKRecurrenceRule *)rule
@@ -182,6 +230,14 @@
 - (IBAction)cancel:(UIBarButtonItem *)sender
 {
 	[self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)saveRule:(UIBarButtonItem *)sender
+{
+	[self.delegate recurrenceRuleCreated:[self rule]];
+	if (self.navigationController)
+		[self.navigationController popViewControllerAnimated:YES];
+	else
+		[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

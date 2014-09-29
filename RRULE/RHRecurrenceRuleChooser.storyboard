@@ -102,7 +102,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="sVL-6l-SSk"/>
-                                    <barButtonItem title="Item" systemItem="save" id="naH-YB-ehG"/>
+                                    <barButtonItem systemItem="done" id="naH-YB-ehG">
+                                        <connections>
+                                            <action selector="saveRule:" destination="DHL-EN-jZA" id="KTN-iP-3TF"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npk-WK-as2">
@@ -149,11 +153,13 @@
                     </view>
                     <connections>
                         <outlet property="daysOfTheWeekSegment" destination="fET-gm-H98" id="AyH-vo-FCx"/>
+                        <outlet property="freqSegment" destination="mWN-LR-v5k" id="p6y-Sj-zmi"/>
                         <outlet property="intervalLabel" destination="JTb-e6-m4u" id="Ryj-Zl-xUv"/>
                         <outlet property="intervalStepper" destination="PU0-eM-hKX" id="co8-JI-sgA"/>
                         <outlet property="monthsSegmentA" destination="Mtv-ZD-Wdp" id="K5o-f7-qBY"/>
                         <outlet property="monthsSegmentB" destination="HyH-eq-i1g" id="1c2-vB-6RA"/>
                         <outlet property="ruleText" destination="npk-WK-as2" id="k8b-FK-k0Q"/>
+                        <outlet property="toolbar" destination="9oC-WT-ufO" id="ur1-b2-x1f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ke-Jo-BCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
