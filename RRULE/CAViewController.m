@@ -12,6 +12,7 @@
 #import "EKRecurrenceRule+RRULE.h"
 #import "EKRecurrenceRule+HumanDescription.h"
 #import "RHReccurenceRuleViewController.h"
+#import "RHCalendarViewController.h"
 
 @interface CAViewController () <RHRecurrenceRuleViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -39,7 +40,15 @@
 - (NSMutableArray *)list
 {
 	if (!_list)
+	{
 		_list = [[NSMutableArray alloc] init];
+		[_list addObject:[[EKRecurrenceRule alloc] initWithString:@"FREQ=DAILY;"]];
+		[_list addObject:[[EKRecurrenceRule alloc] initWithString:@"FREQ=DAILY;INTERVAL=2;"]];
+		[_list addObject:[[EKRecurrenceRule alloc] initWithString:@"FREQ=WEEKLY;BYDAY=TU,TH;"]];
+		[_list addObject:[[EKRecurrenceRule alloc] initWithString:@"FREQ=WEEKLY;BYDAY=WE,FR;"]];
+		[_list addObject:[[EKRecurrenceRule alloc] initWithString:@"FREQ=WEEKLY;BYDAY=TU,TH;INTERVAL=2;"]];
+		[_list addObject:[[EKRecurrenceRule alloc] initWithString:@"FREQ=WEEKLY;BYDAY=WE,FR;INTERVAL=2;"]];
+	}
 	return _list;
 }
 
@@ -97,7 +106,16 @@
 }
 
 #pragma mark - table view delegate
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//	NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//	calendar.locale = [NSLocale currentLocale];
+
+	RHCalendarViewController *calendarView = [[RHCalendarViewController alloc] init];//WithCalendar:calendar];
+	calendarView.recurrenceRule = [self.list objectAtIndex:indexPath.row];
+	[self.navigationController pushViewController:calendarView animated:YES];
+}
+
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
 	RHReccurenceRuleViewController *ruleViewController = [self ruleViewController];

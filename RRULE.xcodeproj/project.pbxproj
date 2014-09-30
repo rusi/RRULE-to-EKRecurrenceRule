@@ -29,6 +29,14 @@
 		DF44116919C15D0700E762CF /* EKRRuleFromString_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF44116819C15D0700E762CF /* EKRRuleFromString_Tests.m */; };
 		DF84440719D76C150068F726 /* MultiSelectSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DF84440619D76C150068F726 /* MultiSelectSegmentedControl.m */; };
 		DF84440A19D76C570068F726 /* RHReccurenceRuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF84440919D76C570068F726 /* RHReccurenceRuleViewController.m */; };
+		DF84441D19DA2D520068F726 /* NSCalendar+RSDFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DF84440F19DA2D520068F726 /* NSCalendar+RSDFAdditions.m */; };
+		DF84441E19DA2D520068F726 /* RSDFDatePickerCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF84441219DA2D520068F726 /* RSDFDatePickerCollectionView.m */; };
+		DF84441F19DA2D520068F726 /* RSDFDatePickerCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DF84441419DA2D520068F726 /* RSDFDatePickerCollectionViewLayout.m */; };
+		DF84442019DA2D520068F726 /* RSDFDatePickerDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF84441619DA2D520068F726 /* RSDFDatePickerDayCell.m */; };
+		DF84442119DA2D520068F726 /* RSDFDatePickerDaysOfWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF84441819DA2D520068F726 /* RSDFDatePickerDaysOfWeekView.m */; };
+		DF84442219DA2D520068F726 /* RSDFDatePickerMonthHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = DF84441A19DA2D520068F726 /* RSDFDatePickerMonthHeader.m */; };
+		DF84442319DA2D520068F726 /* RSDFDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF84441C19DA2D520068F726 /* RSDFDatePickerView.m */; };
+		DF84442719DA2E520068F726 /* RHCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF84442619DA2E520068F726 /* RHCalendarViewController.m */; };
 		DFB55A6219CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB55A6119CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m */; };
 		DFB55A6419CF3CC000DBB072 /* EKRuleHumanDescription_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB55A6319CF3CC000DBB072 /* EKRuleHumanDescription_Tests.m */; };
 		DFC3F67019D50D4900EA1280 /* RHRecurrenceRuleChooser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFC3F66F19D50D4900EA1280 /* RHRecurrenceRuleChooser.storyboard */; };
@@ -77,6 +85,23 @@
 		DF84440619D76C150068F726 /* MultiSelectSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MultiSelectSegmentedControl.m; path = "third-party/MultiSelectSegmentedControl/MultiSelectSegmentedControl.m"; sourceTree = SOURCE_ROOT; };
 		DF84440819D76C570068F726 /* RHReccurenceRuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHReccurenceRuleViewController.h; sourceTree = "<group>"; };
 		DF84440919D76C570068F726 /* RHReccurenceRuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHReccurenceRuleViewController.m; sourceTree = "<group>"; };
+		DF84440E19DA2D520068F726 /* NSCalendar+RSDFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSCalendar+RSDFAdditions.h"; path = "third-party/RSDayFlow/RSDayFlow/NSCalendar+RSDFAdditions.h"; sourceTree = SOURCE_ROOT; };
+		DF84440F19DA2D520068F726 /* NSCalendar+RSDFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSCalendar+RSDFAdditions.m"; path = "third-party/RSDayFlow/RSDayFlow/NSCalendar+RSDFAdditions.m"; sourceTree = SOURCE_ROOT; };
+		DF84441019DA2D520068F726 /* RSDayFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSDayFlow.h; path = "third-party/RSDayFlow/RSDayFlow/RSDayFlow.h"; sourceTree = SOURCE_ROOT; };
+		DF84441119DA2D520068F726 /* RSDFDatePickerCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSDFDatePickerCollectionView.h; path = "third-party/RSDayFlow/RSDayFlow/RSDFDatePickerCollectionView.h"; sourceTree = SOURCE_ROOT; };
+		DF84441219DA2D520068F726 /* RSDFDatePickerCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSDFDatePickerCollectionView.m; path = "third-party/RSDayFlow/RSDayFlow/RSDFDatePickerCollectionView.m"; sourceTree = SOURCE_ROOT; };
+		DF84441319DA2D520068F726 /* RSDFDatePickerCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSDFDatePickerCollectionViewLayout.h; path = "third-party/RSDayFlow/RSDayFlow/RSDFDatePickerCollectionViewLayout.h"; sourceTree = SOURCE_ROOT; };
+		DF84441419DA2D520068F726 /* RSDFDatePickerCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSDFDatePickerCollectionViewLayout.m; path = "third-party/RSDayFlow/RSDayFlow/RSDFDatePickerCollectionViewLayout.m"; sourceTree = SOURCE_ROOT; };
+		DF84441519DA2D520068F726 /* RSDFDatePickerDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSDFDatePickerDayCell.h; path = "third-party/RSDayFlow/RSDayFlow/RSDFDatePickerDayCell.h"; sourceTree = SOURCE_ROOT; };
+		DF84441619DA2D520068F726 /* RSDFDatePickerDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSDFDatePickerDayCell.m; path = "third-party/RSDayFlow/RSDayFlow/RSDFDatePickerDayCell.m"; sourceTree = SOURCE_ROOT; };
+		DF84441719DA2D520068F726 /* RSDFDatePickerDaysOfWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSDFDatePickerDaysOfWeekView.h; path = "third-party/RSDayFlow/RSDayFlow/RSDFDatePickerDaysOfWeekView.h"; sourceTree = SOURCE_ROOT; };
+		DF84441819DA2D520068F726 /* RSDFDatePickerDaysOfWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSDFDatePickerDaysOfWeekView.m; path = "third-party/RSDayFlow/RSDayFlow/RSDFDatePickerDaysOfWeekView.m"; sourceTree = SOURCE_ROOT; };
+		DF84441919DA2D520068F726 /* RSDFDatePickerMonthHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSDFDatePickerMonthHeader.h; path = "third-party/RSDayFlow/RSDayFlow/RSDFDatePickerMonthHeader.h"; sourceTree = SOURCE_ROOT; };
+		DF84441A19DA2D520068F726 /* RSDFDatePickerMonthHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSDFDatePickerMonthHeader.m; path = "third-party/RSDayFlow/RSDayFlow/RSDFDatePickerMonthHeader.m"; sourceTree = SOURCE_ROOT; };
+		DF84441B19DA2D520068F726 /* RSDFDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSDFDatePickerView.h; path = "third-party/RSDayFlow/RSDayFlow/RSDFDatePickerView.h"; sourceTree = SOURCE_ROOT; };
+		DF84441C19DA2D520068F726 /* RSDFDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSDFDatePickerView.m; path = "third-party/RSDayFlow/RSDayFlow/RSDFDatePickerView.m"; sourceTree = SOURCE_ROOT; };
+		DF84442519DA2E520068F726 /* RHCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHCalendarViewController.h; sourceTree = "<group>"; };
+		DF84442619DA2E520068F726 /* RHCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHCalendarViewController.m; sourceTree = "<group>"; };
 		DFB55A6019CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKRecurrenceRule+HumanDescription.h"; sourceTree = "<group>"; };
 		DFB55A6119CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKRecurrenceRule+HumanDescription.m"; sourceTree = "<group>"; };
 		DFB55A6319CF3CC000DBB072 /* EKRuleHumanDescription_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKRuleHumanDescription_Tests.m; sourceTree = "<group>"; };
@@ -142,22 +167,16 @@
 		19E771A9171FED9B006C8607 /* RRULE */ = {
 			isa = PBXGroup;
 			children = (
-				DF8443F219D74F8A0068F726 /* third-party */,
 				19E771B2171FED9B006C8607 /* CAAppDelegate.h */,
 				19E771B3171FED9B006C8607 /* CAAppDelegate.m */,
 				19E771BB171FED9B006C8607 /* MainStoryboard.storyboard */,
 				19E771BE171FED9B006C8607 /* CAViewController.h */,
 				19E771BF171FED9B006C8607 /* CAViewController.m */,
-				1965122317253D3B00EECEAC /* EKRecurrenceRule+RRULE.h */,
-				1965122417253D3B00EECEAC /* EKRecurrenceRule+RRULE.m */,
-				DF44116519C119E500E762CF /* EKRecurrenceRule+NextDate.h */,
-				DF44116619C119E500E762CF /* EKRecurrenceRule+NextDate.m */,
-				DFB55A6019CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.h */,
-				DFB55A6119CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m */,
+				DF84440C19DA2D090068F726 /* RuleChooser */,
+				DF84440B19DA2CEF0068F726 /* EKRecurrenceRule */,
+				DF8443F219D74F8A0068F726 /* MultiSelectSegmentControl */,
+				DF84442419DA2E380068F726 /* Calendar */,
 				19E771AA171FED9B006C8607 /* Supporting Files */,
-				DFC3F66F19D50D4900EA1280 /* RHRecurrenceRuleChooser.storyboard */,
-				DF84440819D76C570068F726 /* RHReccurenceRuleViewController.h */,
-				DF84440919D76C570068F726 /* RHReccurenceRuleViewController.m */,
 			);
 			path = RRULE;
 			sourceTree = "<group>";
@@ -197,13 +216,68 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		DF8443F219D74F8A0068F726 /* third-party */ = {
+		DF8443F219D74F8A0068F726 /* MultiSelectSegmentControl */ = {
 			isa = PBXGroup;
 			children = (
 				DF84440519D76C150068F726 /* MultiSelectSegmentedControl.h */,
 				DF84440619D76C150068F726 /* MultiSelectSegmentedControl.m */,
 			);
-			name = "third-party";
+			name = MultiSelectSegmentControl;
+			sourceTree = "<group>";
+		};
+		DF84440B19DA2CEF0068F726 /* EKRecurrenceRule */ = {
+			isa = PBXGroup;
+			children = (
+				1965122317253D3B00EECEAC /* EKRecurrenceRule+RRULE.h */,
+				1965122417253D3B00EECEAC /* EKRecurrenceRule+RRULE.m */,
+				DF44116519C119E500E762CF /* EKRecurrenceRule+NextDate.h */,
+				DF44116619C119E500E762CF /* EKRecurrenceRule+NextDate.m */,
+				DFB55A6019CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.h */,
+				DFB55A6119CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m */,
+			);
+			name = EKRecurrenceRule;
+			sourceTree = "<group>";
+		};
+		DF84440C19DA2D090068F726 /* RuleChooser */ = {
+			isa = PBXGroup;
+			children = (
+				DFC3F66F19D50D4900EA1280 /* RHRecurrenceRuleChooser.storyboard */,
+				DF84440819D76C570068F726 /* RHReccurenceRuleViewController.h */,
+				DF84440919D76C570068F726 /* RHReccurenceRuleViewController.m */,
+			);
+			name = RuleChooser;
+			sourceTree = "<group>";
+		};
+		DF84440D19DA2D300068F726 /* RSDayFlow */ = {
+			isa = PBXGroup;
+			children = (
+				DF84440E19DA2D520068F726 /* NSCalendar+RSDFAdditions.h */,
+				DF84440F19DA2D520068F726 /* NSCalendar+RSDFAdditions.m */,
+				DF84441019DA2D520068F726 /* RSDayFlow.h */,
+				DF84441119DA2D520068F726 /* RSDFDatePickerCollectionView.h */,
+				DF84441219DA2D520068F726 /* RSDFDatePickerCollectionView.m */,
+				DF84441319DA2D520068F726 /* RSDFDatePickerCollectionViewLayout.h */,
+				DF84441419DA2D520068F726 /* RSDFDatePickerCollectionViewLayout.m */,
+				DF84441519DA2D520068F726 /* RSDFDatePickerDayCell.h */,
+				DF84441619DA2D520068F726 /* RSDFDatePickerDayCell.m */,
+				DF84441719DA2D520068F726 /* RSDFDatePickerDaysOfWeekView.h */,
+				DF84441819DA2D520068F726 /* RSDFDatePickerDaysOfWeekView.m */,
+				DF84441919DA2D520068F726 /* RSDFDatePickerMonthHeader.h */,
+				DF84441A19DA2D520068F726 /* RSDFDatePickerMonthHeader.m */,
+				DF84441B19DA2D520068F726 /* RSDFDatePickerView.h */,
+				DF84441C19DA2D520068F726 /* RSDFDatePickerView.m */,
+			);
+			name = RSDayFlow;
+			sourceTree = "<group>";
+		};
+		DF84442419DA2E380068F726 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				DF84442519DA2E520068F726 /* RHCalendarViewController.h */,
+				DF84442619DA2E520068F726 /* RHCalendarViewController.m */,
+				DF84440D19DA2D300068F726 /* RSDayFlow */,
+			);
+			name = Calendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,14 +380,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF84442219DA2D520068F726 /* RSDFDatePickerMonthHeader.m in Sources */,
 				19E771B0171FED9B006C8607 /* main.m in Sources */,
+				DF84442119DA2D520068F726 /* RSDFDatePickerDaysOfWeekView.m in Sources */,
 				19E771B4171FED9B006C8607 /* CAAppDelegate.m in Sources */,
 				DF44116719C119E500E762CF /* EKRecurrenceRule+NextDate.m in Sources */,
+				DF84442319DA2D520068F726 /* RSDFDatePickerView.m in Sources */,
+				DF84441D19DA2D520068F726 /* NSCalendar+RSDFAdditions.m in Sources */,
 				19E771C0171FED9B006C8607 /* CAViewController.m in Sources */,
+				DF84442719DA2E520068F726 /* RHCalendarViewController.m in Sources */,
 				DF84440A19D76C570068F726 /* RHReccurenceRuleViewController.m in Sources */,
 				DFB55A6219CF3BA600DBB072 /* EKRecurrenceRule+HumanDescription.m in Sources */,
+				DF84442019DA2D520068F726 /* RSDFDatePickerDayCell.m in Sources */,
 				DF84440719D76C150068F726 /* MultiSelectSegmentedControl.m in Sources */,
+				DF84441F19DA2D520068F726 /* RSDFDatePickerCollectionViewLayout.m in Sources */,
 				1965122517253D3B00EECEAC /* EKRecurrenceRule+RRULE.m in Sources */,
+				DF84441E19DA2D520068F726 /* RSDFDatePickerCollectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

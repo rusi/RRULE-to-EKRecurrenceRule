@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <EventKit/EventKit.h>
 
 @interface RHCalendarViewController : UIViewController
+
+@property (nonatomic, strong) EKRecurrenceRule *recurrenceRule;
+@property (nonatomic, strong) NSDate *date;
+
+//- (id)initWithCalendar:(NSCalendar *)calendar;
 
 @end

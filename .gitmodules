@@ -2,3 +2,6 @@
 [submodule "third-party/MultiSelectSegmentedControl"]
 	path = third-party/MultiSelectSegmentedControl
 	url = git@github.com:yonat/MultiSelectSegmentedControl.git
+[submodule "third-party/RSDayFlow"]
+	path = third-party/RSDayFlow
+	url = git@github.com:rusi/RSDayFlow.git
