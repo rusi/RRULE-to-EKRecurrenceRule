@@ -89,7 +89,7 @@
 	if (!_calendar)
 	{
 		_calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-		[_calendar setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+		//[_calendar setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
 	}
 	return _calendar;
 }
@@ -238,7 +238,7 @@
 - (NSDate *)nextDate:(NSDate *)date
 {
 	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-	[gregorian setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+	//[gregorian setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
 	NSDateComponents *currentDateComponents = [gregorian components:NSUIntegerMax fromDate:date];
 
 	NSMutableArray *seeding = [[NSMutableArray alloc] init];
@@ -305,7 +305,7 @@
 		return [a compare:b];
 	}];
 
-	NSLog(@"%@", potentialDates);
+	//NSLog(@"%@", potentialDates);
 
 	// find the first date from the sequence that is > than the start date
 	for (DateInfo *info in potentialDates)
