@@ -34,6 +34,8 @@
 
 - (void)loadView
 {
+//	self.navigationController.navigationBar.translucent = NO;
+
 	self.title = @"Calendar";
 
 	NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -51,6 +53,18 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view.
+//	if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+//		self.edgesForExtendedLayout = UIRectEdgeNone;
+
+	// Check if we are running on ios7
+	if ([[[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."][0] intValue] >= 7)
+	{
+		CGRect statusBarViewRect = [[UIApplication sharedApplication] statusBarFrame];
+		float heightPadding = statusBarViewRect.size.height+self.navigationController.navigationBar.frame.size.height;
+
+		UICollectionView *view = (UICollectionView *)self.calendarView.collectionView;
+		view.contentInset = UIEdgeInsetsMake(heightPadding, 0.0, 0.0, 0.0);
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -98,9 +112,11 @@
 
 		NSDateComponents *dc = [calendar components:comps fromDate: self.date];
 		self.date = [calendar dateFromComponents:dc];
-		dc = [[NSDateComponents alloc] init];
-		[dc setDay:-self.recurrenceRule.interval];
-		self.date = [calendar dateByAddingComponents:dc toDate:self.date options:0];
+		if ([self.recurrenceRule dateMatchesRules:self.date])
+			[self.cachedDates addObject:self.date];
+//		dc = [[NSDateComponents alloc] init];
+//		[dc setDay:-self.recurrenceRule.interval];
+//		self.date = [calendar dateByAddingComponents:dc toDate:self.date options:0];
 		self.date = [self.recurrenceRule nextDate:self.date];
 		[self.cachedDates addObject:self.date];
 	}

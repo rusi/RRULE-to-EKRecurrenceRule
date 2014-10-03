@@ -48,6 +48,8 @@
 		[_list addObject:[[EKRecurrenceRule alloc] initWithString:@"FREQ=WEEKLY;BYDAY=WE,FR;"]];
 		[_list addObject:[[EKRecurrenceRule alloc] initWithString:@"FREQ=WEEKLY;BYDAY=TU,TH;INTERVAL=2;"]];
 		[_list addObject:[[EKRecurrenceRule alloc] initWithString:@"FREQ=WEEKLY;BYDAY=WE,FR;INTERVAL=2;"]];
+		[_list addObject:[[EKRecurrenceRule alloc] initWithString:@"FREQ=MONTHLY;"]];
+		[_list addObject:[[EKRecurrenceRule alloc] initWithString:@"FREQ=MONTHLY;INTERVAL=2;"]];
 	}
 	return _list;
 }
