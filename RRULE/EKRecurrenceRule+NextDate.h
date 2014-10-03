@@ -10,6 +10,7 @@
 
 @interface EKRecurrenceRule (NextDate)
 
+- (BOOL)dateMatchesRules:(NSDate *)date;
 - (NSDate *)nextDate:(NSDate *)date;
 
 @end

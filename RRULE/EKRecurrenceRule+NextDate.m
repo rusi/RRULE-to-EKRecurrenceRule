@@ -235,7 +235,7 @@
 	}
 }
 
-- (NSDate *)nextDate:(NSDate *)date
+- (NSArray *)getPotentialDatesFor:(NSDate *)date
 {
 	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 	//[gregorian setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
@@ -307,6 +307,13 @@
 
 	//NSLog(@"%@", potentialDates);
 
+	return potentialDates;
+}
+
+- (NSDate *)nextDate:(NSDate *)date
+{
+	NSArray *potentialDates = [self getPotentialDatesFor:date];
+
 	// find the first date from the sequence that is > than the start date
 	for (DateInfo *info in potentialDates)
 	{
@@ -316,6 +323,13 @@
 
 	NSAssert(false, @"Couldn't calculate next date.");
 	return nil;
+}
+
+- (BOOL)dateMatchesRules:(NSDate *)date
+{
+	NSArray *potentialDates = [self getPotentialDatesFor:date];
+
+	return [[[potentialDates firstObject] getDate] compare:date] == NSOrderedSame;
 }
 
 @end
